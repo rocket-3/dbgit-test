@@ -1,0 +1,54 @@
+name: public/roles.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set {
+    }
+  name: roles
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: f
+    owner: postgres
+    table_name: roles
+  schema: public
+fields:
+  code:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: code
+    nameExactly: false
+    order: 1
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+indexes:
+  Роли_pk:
+    dependencies: !!set {
+      }
+    name: Роли_pk
+    options:
+      ddl: CREATE UNIQUE INDEX "Роли_pk" ON public.roles USING btree (code)
+      indexname: Роли_pk
+      schemaname: public
+      tablename: roles
+    owner: null
+    schema: public
+constraints:
+  pk_roles:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_roles
+    options:
+      constraint_name: pk_roles
+      constraint_type: p
+      ddl: PRIMARY KEY (code)
+    owner: null
+    schema: public

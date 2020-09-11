@@ -1,0 +1,117 @@
+name: public/issue_parts.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/issue.tbl: null
+    public/parts.tbl: null
+  name: issue_parts
+  options:
+    dependencies: '{public/issue.tbl,public/parts.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: issue_parts
+  schema: public
+fields:
+  issue_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: issue_id
+    nameExactly: false
+    order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  part_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: part_id
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+indexes:
+  issue_parts_fk1_idx:
+    dependencies: !!set {
+      }
+    name: issue_parts_fk1_idx
+    options:
+      ddl: CREATE INDEX issue_parts_fk1_idx ON public.issue_parts USING btree (issue_id)
+      indexname: issue_parts_fk1_idx
+      schemaname: public
+      tablename: issue_parts
+    owner: null
+    schema: public
+  issue_parts_fk2_idx:
+    dependencies: !!set {
+      }
+    name: issue_parts_fk2_idx
+    options:
+      ddl: CREATE INDEX issue_parts_fk2_idx ON public.issue_parts USING btree (issue_id)
+      indexname: issue_parts_fk2_idx
+      schemaname: public
+      tablename: issue_parts
+    owner: null
+    schema: public
+  issue_parts_pk_idx:
+    dependencies: !!set {
+      }
+    name: issue_parts_pk_idx
+    options:
+      ddl: CREATE UNIQUE INDEX issue_parts_pk_idx ON public.issue_parts USING btree
+        (issue_id, part_id)
+      indexname: issue_parts_pk_idx
+      schemaname: public
+      tablename: issue_parts
+    owner: null
+    schema: public
+constraints:
+  fk_issue_parts_issue_id:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_issue_parts_issue_id
+    options:
+      constraint_name: fk_issue_parts_issue_id
+      constraint_type: f
+      ddl: FOREIGN KEY (issue_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+    owner: null
+    schema: public
+  fk_issue_parts_part_id:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_issue_parts_part_id
+    options:
+      constraint_name: fk_issue_parts_part_id
+      constraint_type: f
+      ddl: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+    owner: null
+    schema: public
+  pk_issue_parts:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_issue_parts
+    options:
+      constraint_name: pk_issue_parts
+      constraint_type: p
+      ddl: PRIMARY KEY (issue_id, part_id)
+    owner: null
+    schema: public

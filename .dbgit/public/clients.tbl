@@ -1,0 +1,110 @@
+name: public/clients.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set {
+    }
+  name: clients
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: clients
+  schema: public
+fields:
+  id:
+    defaultValue: nextval('"Клиенты_ID клиента_seq"'::regclass)
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  address:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: address
+    nameExactly: false
+    order: 4
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  fio:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: fio
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  infos:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: infos
+    nameExactly: false
+    order: 5
+    precision: 0
+    scale: 0
+    typeSQL: text[]
+    typeUniversal: NATIVE
+  phone:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: phone
+    nameExactly: false
+    order: 3
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+indexes:
+  clients_pk:
+    dependencies: !!set {
+      }
+    name: clients_pk
+    options:
+      ddl: CREATE UNIQUE INDEX clients_pk ON public.clients USING btree (id)
+      indexname: clients_pk
+      schemaname: public
+      tablename: clients
+    owner: null
+    schema: public
+constraints:
+  pk_clients:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_clients
+    options:
+      constraint_name: pk_clients
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

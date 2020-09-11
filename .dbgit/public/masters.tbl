@@ -1,0 +1,120 @@
+name: public/masters.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/regions.tbl: null
+  name: masters
+  options:
+    dependencies: '{public/regions.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: masters
+  schema: public
+fields:
+  id:
+    defaultValue: nextval('"Мастера_ID мастера_seq"'::regclass)
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  fio:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: fio
+    nameExactly: false
+    order: 3
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  phone:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: phone
+    nameExactly: false
+    order: 4
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  region_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: region_id
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+indexes:
+  Мастера_pk:
+    dependencies: !!set {
+      }
+    name: Мастера_pk
+    options:
+      ddl: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
+      indexname: Мастера_pk
+      schemaname: public
+      tablename: masters
+    owner: null
+    schema: public
+  Регион мастера_FK:
+    dependencies: !!set {
+      }
+    name: Регион мастера_FK
+    options:
+      ddl: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
+      indexname: Регион мастера_FK
+      schemaname: public
+      tablename: masters
+    owner: null
+    schema: public
+constraints:
+  FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+    options:
+      constraint_name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+    owner: null
+    schema: public
+  pk_masters:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_masters
+    options:
+      constraint_name: pk_masters
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

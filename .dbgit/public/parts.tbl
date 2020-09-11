@@ -1,0 +1,134 @@
+name: public/parts.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/part_category.tbl: null
+  name: parts
+  options:
+    dependencies: '{public/part_category.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: parts
+  schema: public
+fields:
+  id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  cost:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: cost
+    nameExactly: false
+    order: 4
+    precision: 53
+    scale: 0
+    typeSQL: double precision
+    typeUniversal: NUMBER
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: name
+    nameExactly: false
+    order: 3
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  part_category_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: part_category_id
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  photos:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: photos
+    nameExactly: false
+    order: 5
+    precision: 0
+    scale: 0
+    typeSQL: json
+    typeUniversal: NATIVE
+indexes:
+  Запчасти_pk:
+    dependencies: !!set {
+      }
+    name: Запчасти_pk
+    options:
+      ddl: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
+      indexname: Запчасти_pk
+      schemaname: public
+      tablename: parts
+    owner: null
+    schema: public
+  Подкатегория запчасти_FK:
+    dependencies: !!set {
+      }
+    name: Подкатегория запчасти_FK
+    options:
+      ddl: CREATE INDEX "Подкатегория запчасти_FK" ON public.parts USING btree (part_category_id)
+      indexname: Подкатегория запчасти_FK
+      schemaname: public
+      tablename: parts
+    owner: null
+    schema: public
+constraints:
+  fk_ЗАПЧАСТИ_ПОДКАТЕГО_ПОДКАТЕГ:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_ЗАПЧАСТИ_ПОДКАТЕГО_ПОДКАТЕГ
+    options:
+      constraint_name: fk_ЗАПЧАСТИ_ПОДКАТЕГО_ПОДКАТЕГ
+      constraint_type: f
+      ddl: FOREIGN KEY (part_category_id) REFERENCES part_category(id) ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+    owner: null
+    schema: public
+  pk_parts:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_parts
+    options:
+      constraint_name: pk_parts
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

@@ -1,0 +1,198 @@
+name: public/users.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/regions.tbl: null
+  name: users
+  options:
+    dependencies: '{public/regions.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: users
+  schema: public
+fields:
+  id:
+    defaultValue: nextval('"Пользователи_ID пользователя_seq"'::regclass)
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  config:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: config
+    nameExactly: false
+    order: 4
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  disabled:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: disabled
+    nameExactly: false
+    order: 5
+    precision: 0
+    scale: 0
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
+  fio:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: fio
+    nameExactly: false
+    order: 3
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  hash:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: hash
+    nameExactly: false
+    order: 7
+    precision: 0
+    scale: 0
+    typeSQL: character varying NOT NULL
+    typeUniversal: STRING
+  login:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: login
+    nameExactly: false
+    order: 8
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  region_code:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: region_code
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+  roles:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: roles
+    nameExactly: false
+    order: 6
+    precision: 0
+    scale: 0
+    typeSQL: text[]
+    typeUniversal: NATIVE
+indexes:
+  ak_login:
+    dependencies: !!set {
+      }
+    name: ak_login
+    options:
+      ddl: CREATE UNIQUE INDEX ak_login ON public.users USING btree (login)
+      indexname: ak_login
+      schemaname: public
+      tablename: users
+    owner: null
+    schema: public
+  users_pk_idx:
+    dependencies: !!set {
+      }
+    name: users_pk_idx
+    options:
+      ddl: CREATE UNIQUE INDEX users_pk_idx ON public.users USING btree (id)
+      indexname: users_pk_idx
+      schemaname: public
+      tablename: users
+    owner: null
+    schema: public
+  users_region_fk_idx:
+    dependencies: !!set {
+      }
+    name: users_region_fk_idx
+    options:
+      ddl: CREATE INDEX users_region_fk_idx ON public.users USING btree (region_code)
+      indexname: users_region_fk_idx
+      schemaname: public
+      tablename: users
+    owner: null
+    schema: public
+constraints:
+  ak_login:
+    constraintType: u
+    dependencies: !!set {
+      }
+    name: ak_login
+    options:
+      constraint_name: ak_login
+      constraint_type: u
+      ddl: UNIQUE (login)
+    owner: null
+    schema: public
+  fk_region:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_region
+    options:
+      constraint_name: fk_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_code) REFERENCES regions(code) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+    owner: null
+    schema: public
+  pk_users:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_users
+    options:
+      constraint_name: pk_users
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

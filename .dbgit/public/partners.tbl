@@ -1,0 +1,82 @@
+name: public/partners.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set {
+    }
+  name: partners
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: partners
+  schema: public
+fields:
+  id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  mult:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: mult
+    nameExactly: false
+    order: 3
+    precision: 53
+    scale: 0
+    typeSQL: double precision
+    typeUniversal: NUMBER
+  phone:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: phone
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+indexes:
+  partners_pk:
+    dependencies: !!set {
+      }
+    name: partners_pk
+    options:
+      ddl: CREATE UNIQUE INDEX partners_pk ON public.partners USING btree (id)
+      indexname: partners_pk
+      schemaname: public
+      tablename: partners
+    owner: null
+    schema: public
+constraints:
+  pk_partners:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_partners
+    options:
+      constraint_name: pk_partners
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

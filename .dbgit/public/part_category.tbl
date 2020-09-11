@@ -1,0 +1,94 @@
+name: public/part_category.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/tech_category.tbl: null
+  name: part_category
+  options:
+    dependencies: '{public/tech_category.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: part_category
+  schema: public
+fields:
+  id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: id
+    nameExactly: false
+    order: 1
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  tech_category_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: tech_category_id
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+indexes:
+  Категория техники_FK:
+    dependencies: !!set {
+      }
+    name: Категория техники_FK
+    options:
+      ddl: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree
+        (tech_category_id)
+      indexname: Категория техники_FK
+      schemaname: public
+      tablename: part_category
+    owner: null
+    schema: public
+  Подкатегории запчастей_PK:
+    dependencies: !!set {
+      }
+    name: Подкатегории запчастей_PK
+    options:
+      ddl: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category
+        USING btree (id)
+      indexname: Подкатегории запчастей_PK
+      schemaname: public
+      tablename: part_category
+    owner: null
+    schema: public
+constraints:
+  fk_part_category_tech:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_part_category_tech
+    options:
+      constraint_name: fk_part_category_tech
+      constraint_type: f
+      ddl: FOREIGN KEY (tech_category_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+    owner: null
+    schema: public
+  pk_part_category:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_part_category
+    options:
+      constraint_name: pk_part_category
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+    owner: null
+    schema: public

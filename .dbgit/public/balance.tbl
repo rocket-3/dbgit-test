@@ -1,0 +1,161 @@
+name: public/balance.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set
+    public/issue.tbl: null
+    public/operation_types.tbl: null
+  name: balance
+  options:
+    dependencies: '{public/issue.tbl,public/operation_types.tbl}'
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: balance
+  schema: public
+fields:
+  commentario:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: commentario
+    nameExactly: false
+    order: 6
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+  diff:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: diff
+    nameExactly: false
+    order: 5
+    precision: 53
+    scale: 0
+    typeSQL: double precision NOT NULL
+    typeUniversal: NUMBER
+  issue_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: issue_id
+    nameExactly: false
+    order: 3
+    precision: 32
+    scale: 0
+    typeSQL: integer
+    typeUniversal: NUMBER
+  operation_date:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: operation_date
+    nameExactly: false
+    order: 4
+    precision: 0
+    scale: 0
+    typeSQL: date NOT NULL
+    typeUniversal: DATE
+  operation_id:
+    defaultValue: nextval('balance_id_seq'::regclass)
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: operation_id
+    nameExactly: false
+    order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  operation_type_name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: operation_type_name
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
+indexes:
+  balance_issue_fk:
+    dependencies: !!set {
+      }
+    name: balance_issue_fk
+    options:
+      ddl: CREATE INDEX balance_issue_fk ON public.balance USING btree (issue_id)
+      indexname: balance_issue_fk
+      schemaname: public
+      tablename: balance
+    owner: null
+    schema: public
+  operation_types_fk:
+    dependencies: !!set {
+      }
+    name: operation_types_fk
+    options:
+      ddl: CREATE INDEX operation_types_fk ON public.balance USING btree (operation_type_name)
+      indexname: operation_types_fk
+      schemaname: public
+      tablename: balance
+    owner: null
+    schema: public
+constraints:
+  fk_balance_issue:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_balance_issue
+    options:
+      constraint_name: fk_balance_issue
+      constraint_type: f
+      ddl: FOREIGN KEY (operation_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+    owner: null
+    schema: public
+  fk_balance_operation_type:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_balance_operation_type
+    options:
+      constraint_name: fk_balance_operation_type
+      constraint_type: f
+      ddl: FOREIGN KEY (operation_type_name) REFERENCES operation_types(name) ON UPDATE
+        RESTRICT ON DELETE RESTRICT
+    owner: null
+    schema: public
+  pk_balance:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_balance
+    options:
+      constraint_name: pk_balance
+      constraint_type: p
+      ddl: PRIMARY KEY (operation_id)
+    owner: null
+    schema: public

@@ -1,0 +1,17 @@
+name: public/Мастера_ID мастера_seq.seq
+dbType: POSTGRES
+dbVersion: '11.7'
+sequence:
+  dependencies: !!set {
+    }
+  name: Мастера_ID мастера_seq
+  options:
+    cycle_option: 'NO'
+    increment: '1'
+    maximum_value: '2147483647'
+    minimum_value: '1'
+    owner: postgres
+    sequence_name: Мастера_ID мастера_seq
+    start_value: '1'
+  schema: public
+  value: 0

@@ -1,0 +1,54 @@
+name: public/regions.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  comment: null
+  dependencies: !!set {
+    }
+  name: regions
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: regions
+  schema: public
+fields:
+  code:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: code
+    nameExactly: false
+    order: 1
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
+indexes:
+  Регионы_pk:
+    dependencies: !!set {
+      }
+    name: Регионы_pk
+    options:
+      ddl: CREATE UNIQUE INDEX "Регионы_pk" ON public.regions USING btree (code)
+      indexname: Регионы_pk
+      schemaname: public
+      tablename: regions
+    owner: null
+    schema: public
+constraints:
+  pk_РЕГИОНЫ:
+    constraintType: p
+    dependencies: !!set {
+      }
+    name: pk_РЕГИОНЫ
+    options:
+      constraint_name: pk_РЕГИОНЫ
+      constraint_type: p
+      ddl: PRIMARY KEY (code)
+    owner: null
+    schema: public

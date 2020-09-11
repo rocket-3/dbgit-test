@@ -81,15 +81,15 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: false
+    isNullable: true
     isPrimaryKey: false
     length: 0
     name: coeff_master
     nameExactly: false
-    order: 17
+    order: 18
     precision: 53
     scale: 0
-    typeSQL: double precision NOT NULL
+    typeSQL: double precision
     typeUniversal: NUMBER
   commentario:
     defaultValue: null
@@ -100,7 +100,7 @@ fields:
     length: 0
     name: commentario
     nameExactly: false
-    order: 14
+    order: 15
     precision: 0
     scale: 0
     typeSQL: text NOT NULL
@@ -128,11 +128,25 @@ fields:
     length: 0
     name: date_return
     nameExactly: false
-    order: 16
+    order: 17
     precision: 0
     scale: 0
     typeSQL: date
     typeUniversal: DATE
+  is_okay:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: is_okay
+    nameExactly: false
+    order: 14
+    precision: 0
+    scale: 0
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
   issuecategory_id:
     defaultValue: null
     description: null
@@ -143,10 +157,10 @@ fields:
     name: issuecategory_id
     nameExactly: false
     order: 6
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
   master_id:
     defaultValue: null
     description: null
@@ -170,7 +184,7 @@ fields:
     length: 0
     name: matcher_id
     nameExactly: false
-    order: 15
+    order: 16
     precision: 32
     scale: 0
     typeSQL: integer
@@ -199,10 +213,10 @@ fields:
     name: partner_id
     nameExactly: false
     order: 11
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text
-    typeUniversal: TEXT
+    typeSQL: integer
+    typeUniversal: NUMBER
   photos:
     defaultValue: null
     description: null
@@ -212,7 +226,7 @@ fields:
     length: 0
     name: photos
     nameExactly: false
-    order: 24
+    order: 25
     precision: 0
     scale: 0
     typeSQL: text[]
@@ -221,16 +235,16 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: region_id
     nameExactly: false
     order: 4
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text
-    typeUniversal: TEXT
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
   status:
     defaultValue: null
     description: null
@@ -254,7 +268,7 @@ fields:
     length: 0
     name: sum_cash
     nameExactly: false
-    order: 23
+    order: 24
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -268,7 +282,7 @@ fields:
     length: 0
     name: sum_dirty
     nameExactly: false
-    order: 20
+    order: 22
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -282,7 +296,7 @@ fields:
     length: 0
     name: sum_final
     nameExactly: false
-    order: 19
+    order: 20
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -310,7 +324,7 @@ fields:
     length: 0
     name: sum_matcher
     nameExactly: false
-    order: 22
+    order: 23
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -324,7 +338,7 @@ fields:
     length: 0
     name: sum_preray
     nameExactly: false
-    order: 18
+    order: 19
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -339,15 +353,15 @@ fields:
     name: techcategory_id
     nameExactly: false
     order: 7
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
   time_come:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: time_come
@@ -355,108 +369,10 @@ fields:
     order: 10
     precision: 0
     scale: 0
-    typeSQL: text
+    typeSQL: text NOT NULL
     typeUniversal: TEXT
-indexes:
-  issue_category_id:
-    dependencies: !!set {
-      }
-    name: issue_category_id
-    options:
-      ddl: CREATE INDEX issue_category_id ON public.issue USING btree (issuecategory_id)
-      indexname: issue_category_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_client_id:
-    dependencies: !!set {
-      }
-    name: issue_client_id
-    options:
-      ddl: CREATE INDEX issue_client_id ON public.issue USING btree (client_id)
-      indexname: issue_client_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_master_id:
-    dependencies: !!set {
-      }
-    name: issue_master_id
-    options:
-      ddl: CREATE INDEX issue_master_id ON public.issue USING btree (master_id)
-      indexname: issue_master_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_matcher_id:
-    dependencies: !!set {
-      }
-    name: issue_matcher_id
-    options:
-      ddl: CREATE INDEX issue_matcher_id ON public.issue USING btree (matcher_id)
-      indexname: issue_matcher_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_operator_id:
-    dependencies: !!set {
-      }
-    name: issue_operator_id
-    options:
-      ddl: CREATE INDEX issue_operator_id ON public.issue USING btree (oper_id)
-      indexname: issue_operator_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_partner_id:
-    dependencies: !!set {
-      }
-    name: issue_partner_id
-    options:
-      ddl: CREATE INDEX issue_partner_id ON public.issue USING btree (partner_id)
-      indexname: issue_partner_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_pk:
-    dependencies: !!set {
-      }
-    name: issue_pk
-    options:
-      ddl: CREATE UNIQUE INDEX issue_pk ON public.issue USING btree (id)
-      indexname: issue_pk
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_region_id:
-    dependencies: !!set {
-      }
-    name: issue_region_id
-    options:
-      ddl: CREATE INDEX issue_region_id ON public.issue USING btree (region_id)
-      indexname: issue_region_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
-  issue_tech_category_id:
-    dependencies: !!set {
-      }
-    name: issue_tech_category_id
-    options:
-      ddl: CREATE INDEX issue_tech_category_id ON public.issue USING btree (techcategory_id)
-      indexname: issue_tech_category_id
-      schemaname: public
-      tablename: issue
-    owner: null
-    schema: public
+indexes: {
+  }
 constraints:
   fk_issue_category_id:
     constraintType: f
@@ -470,6 +386,8 @@ constraints:
         ON DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (techcategory_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
   fk_issue_client_id:
     constraintType: f
     dependencies: !!set {
@@ -482,6 +400,8 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_master_id:
     constraintType: f
     dependencies: !!set {
@@ -494,6 +414,8 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (master_id) REFERENCES masters(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_matcher_id:
     constraintType: f
     dependencies: !!set {
@@ -506,6 +428,8 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (matcher_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_oper_id:
     constraintType: f
     dependencies: !!set {
@@ -518,6 +442,7 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (oper_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE RESTRICT
   fk_issue_partner_id:
     constraintType: f
     dependencies: !!set {
@@ -530,6 +455,8 @@ constraints:
         DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (partner_id) REFERENCES partners(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_region_id:
     constraintType: f
     dependencies: !!set {
@@ -542,6 +469,8 @@ constraints:
         DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_tech_category_id:
     constraintType: f
     dependencies: !!set {
@@ -554,6 +483,8 @@ constraints:
         RESTRICT ON DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (issuecategory_id) REFERENCES issue_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
   pk_issue_id:
     constraintType: p
     dependencies: !!set {
@@ -565,3 +496,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

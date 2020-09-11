@@ -40,6 +40,7 @@ indexes:
       tablename: roles
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX "Роли_pk" ON public.roles USING btree (code)
 constraints:
   pk_roles:
     constraintType: p
@@ -52,3 +53,4 @@ constraints:
       ddl: PRIMARY KEY (code)
     owner: null
     schema: public
+    sql: PRIMARY KEY (code)

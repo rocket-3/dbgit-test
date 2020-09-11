@@ -1,17 +1,17 @@
-name: public/Пользователи_ID пользователя_seq.seq
+name: public/user_id_seq.seq
 dbType: POSTGRES
 dbVersion: '11.7'
 sequence:
   dependencies: !!set {
     }
-  name: Пользователи_ID пользователя_seq
+  name: user_id_seq
   options:
     cycle_option: 'NO'
     increment: '1'
     maximum_value: '2147483647'
     minimum_value: '1'
     owner: postgres
-    sequence_name: Пользователи_ID пользователя_seq
+    sequence_name: user_id_seq
     start_value: '1'
   schema: public
   value: 0

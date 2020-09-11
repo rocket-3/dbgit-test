@@ -97,6 +97,7 @@ indexes:
       tablename: parts
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
   Подкатегория запчасти_FK:
     dependencies: !!set {
       }
@@ -108,6 +109,7 @@ indexes:
       tablename: parts
     owner: null
     schema: public
+    sql: CREATE INDEX "Подкатегория запчасти_FK" ON public.parts USING btree (part_category_id)
 constraints:
   fk_ЗАПЧАСТИ_ПОДКАТЕГО_ПОДКАТЕГ:
     constraintType: f
@@ -121,6 +123,8 @@ constraints:
         ON DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (part_category_id) REFERENCES part_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
   pk_parts:
     constraintType: p
     dependencies: !!set {
@@ -132,3 +136,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

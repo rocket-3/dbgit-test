@@ -16,7 +16,7 @@ table:
   schema: public
 fields:
   id:
-    defaultValue: nextval('"Мастера_ID мастера_seq"'::regclass)
+    defaultValue: nextval('master_id_seq'::regclass)
     description: null
     fixed: false
     isNullable: false
@@ -67,46 +67,38 @@ fields:
     name: region_id
     nameExactly: false
     order: 2
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text
-    typeUniversal: TEXT
+    typeSQL: integer
+    typeUniversal: NUMBER
 indexes:
-  Мастера_pk:
+  masters_pk:
     dependencies: !!set {
       }
-    name: Мастера_pk
+    name: masters_pk
     options:
-      ddl: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
-      indexname: Мастера_pk
+      ddl: CREATE UNIQUE INDEX masters_pk ON public.masters USING btree (id)
+      indexname: masters_pk
       schemaname: public
       tablename: masters
     owner: null
     schema: public
-  Регион мастера_FK:
-    dependencies: !!set {
-      }
-    name: Регион мастера_FK
-    options:
-      ddl: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
-      indexname: Регион мастера_FK
-      schemaname: public
-      tablename: masters
-    owner: null
-    schema: public
+    sql: CREATE UNIQUE INDEX masters_pk ON public.masters USING btree (id)
 constraints:
-  FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ:
+  fk_masters_regions:
     constraintType: f
     dependencies: !!set {
       }
-    name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+    name: fk_masters_regions
     options:
-      constraint_name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+      constraint_name: fk_masters_regions
       constraint_type: f
       ddl: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON
         DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   pk_masters:
     constraintType: p
     dependencies: !!set {
@@ -118,3 +110,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

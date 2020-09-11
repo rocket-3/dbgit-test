@@ -112,6 +112,7 @@ indexes:
       tablename: balance
     owner: null
     schema: public
+    sql: CREATE INDEX balance_issue_fk ON public.balance USING btree (issue_id)
   operation_types_fk:
     dependencies: !!set {
       }
@@ -123,6 +124,7 @@ indexes:
       tablename: balance
     owner: null
     schema: public
+    sql: CREATE INDEX operation_types_fk ON public.balance USING btree (operation_type_name)
 constraints:
   fk_balance_issue:
     constraintType: f
@@ -136,6 +138,8 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (operation_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_balance_operation_type:
     constraintType: f
     dependencies: !!set {
@@ -148,6 +152,8 @@ constraints:
         RESTRICT ON DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (operation_type_name) REFERENCES operation_types(name) ON UPDATE
+      RESTRICT ON DELETE RESTRICT
   pk_balance:
     constraintType: p
     dependencies: !!set {
@@ -159,3 +165,4 @@ constraints:
       ddl: PRIMARY KEY (operation_id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (operation_id)

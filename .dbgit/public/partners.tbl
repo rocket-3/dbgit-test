@@ -24,10 +24,10 @@ fields:
     name: id
     nameExactly: false
     order: 1
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
   mult:
     defaultValue: null
     description: null
@@ -37,11 +37,25 @@ fields:
     length: 0
     name: mult
     nameExactly: false
-    order: 3
+    order: 4
     precision: 53
     scale: 0
     typeSQL: double precision
     typeUniversal: NUMBER
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: name
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
   phone:
     defaultValue: null
     description: null
@@ -51,23 +65,13 @@ fields:
     length: 0
     name: phone
     nameExactly: false
-    order: 2
+    order: 3
     precision: 0
     scale: 0
     typeSQL: text
     typeUniversal: TEXT
-indexes:
-  partners_pk:
-    dependencies: !!set {
-      }
-    name: partners_pk
-    options:
-      ddl: CREATE UNIQUE INDEX partners_pk ON public.partners USING btree (id)
-      indexname: partners_pk
-      schemaname: public
-      tablename: partners
-    owner: null
-    schema: public
+indexes: {
+  }
 constraints:
   pk_partners:
     constraintType: p
@@ -80,3 +84,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

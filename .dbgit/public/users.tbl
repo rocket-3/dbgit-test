@@ -16,7 +16,7 @@ table:
   schema: public
 fields:
   id:
-    defaultValue: nextval('"Пользователи_ID пользователя_seq"'::regclass)
+    defaultValue: nextval('user_id_seq'::regclass)
     description: null
     fixed: false
     isNullable: false
@@ -109,10 +109,10 @@ fields:
     name: region_code
     nameExactly: false
     order: 2
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text
-    typeUniversal: TEXT
+    typeSQL: integer
+    typeUniversal: NUMBER
   roles:
     defaultValue: null
     description: null
@@ -139,6 +139,7 @@ indexes:
       tablename: users
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX ak_login ON public.users USING btree (login)
   users_pk_idx:
     dependencies: !!set {
       }
@@ -150,6 +151,7 @@ indexes:
       tablename: users
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX users_pk_idx ON public.users USING btree (id)
   users_region_fk_idx:
     dependencies: !!set {
       }
@@ -161,6 +163,7 @@ indexes:
       tablename: users
     owner: null
     schema: public
+    sql: CREATE INDEX users_region_fk_idx ON public.users USING btree (region_code)
 constraints:
   ak_login:
     constraintType: u
@@ -173,6 +176,7 @@ constraints:
       ddl: UNIQUE (login)
     owner: null
     schema: public
+    sql: UNIQUE (login)
   fk_region:
     constraintType: f
     dependencies: !!set {
@@ -185,6 +189,8 @@ constraints:
         DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (region_code) REFERENCES regions(code) ON UPDATE RESTRICT ON
+      DELETE RESTRICT
   pk_users:
     constraintType: p
     dependencies: !!set {
@@ -196,3 +202,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

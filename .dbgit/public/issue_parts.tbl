@@ -56,6 +56,7 @@ indexes:
       tablename: issue_parts
     owner: null
     schema: public
+    sql: CREATE INDEX issue_parts_fk1_idx ON public.issue_parts USING btree (issue_id)
   issue_parts_fk2_idx:
     dependencies: !!set {
       }
@@ -67,6 +68,7 @@ indexes:
       tablename: issue_parts
     owner: null
     schema: public
+    sql: CREATE INDEX issue_parts_fk2_idx ON public.issue_parts USING btree (issue_id)
   issue_parts_pk_idx:
     dependencies: !!set {
       }
@@ -79,6 +81,8 @@ indexes:
       tablename: issue_parts
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX issue_parts_pk_idx ON public.issue_parts USING btree
+      (issue_id, part_id)
 constraints:
   fk_issue_parts_issue_id:
     constraintType: f
@@ -92,6 +96,8 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (issue_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
   fk_issue_parts_part_id:
     constraintType: f
     dependencies: !!set {
@@ -104,6 +110,7 @@ constraints:
         RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE RESTRICT
   pk_issue_parts:
     constraintType: p
     dependencies: !!set {
@@ -115,3 +122,4 @@ constraints:
       ddl: PRIMARY KEY (issue_id, part_id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (issue_id, part_id)

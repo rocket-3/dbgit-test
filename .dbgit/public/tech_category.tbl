@@ -15,13 +15,27 @@ table:
   schema: public
 fields:
   id:
-    defaultValue: null
+    defaultValue: nextval('tech_category_seq'::regclass)
     description: null
     fixed: false
     isNullable: false
     isPrimaryKey: true
     length: 0
     name: id
+    nameExactly: false
+    order: 2
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: name
     nameExactly: false
     order: 1
     precision: 0
@@ -41,6 +55,8 @@ indexes:
       tablename: tech_category
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX tech_category_pk ON public.tech_category USING btree
+      (id)
 constraints:
   pk_tech_category:
     constraintType: p
@@ -53,3 +69,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

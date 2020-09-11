@@ -39,35 +39,12 @@ fields:
     name: tech_category_id
     nameExactly: false
     order: 2
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text
-    typeUniversal: TEXT
-indexes:
-  Категория техники_FK:
-    dependencies: !!set {
-      }
-    name: Категория техники_FK
-    options:
-      ddl: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree
-        (tech_category_id)
-      indexname: Категория техники_FK
-      schemaname: public
-      tablename: part_category
-    owner: null
-    schema: public
-  Подкатегории запчастей_PK:
-    dependencies: !!set {
-      }
-    name: Подкатегории запчастей_PK
-    options:
-      ddl: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category
-        USING btree (id)
-      indexname: Подкатегории запчастей_PK
-      schemaname: public
-      tablename: part_category
-    owner: null
-    schema: public
+    typeSQL: integer
+    typeUniversal: NUMBER
+indexes: {
+  }
 constraints:
   fk_part_category_tech:
     constraintType: f
@@ -81,6 +58,8 @@ constraints:
         ON DELETE RESTRICT
     owner: null
     schema: public
+    sql: FOREIGN KEY (tech_category_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
   pk_part_category:
     constraintType: p
     dependencies: !!set {
@@ -92,3 +71,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

@@ -1,17 +1,17 @@
-name: public/Клиенты_ID клиента_seq.seq
+name: public/tech_category_seq.seq
 dbType: POSTGRES
 dbVersion: '11.7'
 sequence:
   dependencies: !!set {
     }
-  name: Клиенты_ID клиента_seq
+  name: tech_category_seq
   options:
     cycle_option: 'NO'
     increment: '1'
-    maximum_value: '2147483647'
+    maximum_value: '9223372036854775807'
     minimum_value: '1'
     owner: postgres
-    sequence_name: Клиенты_ID клиента_seq
+    sequence_name: tech_category_seq
     start_value: '1'
   schema: public
   value: 0

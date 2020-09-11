@@ -24,10 +24,10 @@ fields:
     name: id
     nameExactly: false
     order: 1
-    precision: 0
+    precision: 32
     scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
   mult:
     defaultValue: null
     description: null
@@ -37,11 +37,25 @@ fields:
     length: 0
     name: mult
     nameExactly: false
-    order: 2
+    order: 3
     precision: 53
     scale: 0
     typeSQL: double precision
     typeUniversal: NUMBER
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: name
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
 indexes:
   issue_category_pk:
     dependencies: !!set {
@@ -55,6 +69,8 @@ indexes:
       tablename: issue_category
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX issue_category_pk ON public.issue_category USING btree
+      (id)
 constraints:
   pk_issue_category:
     constraintType: p
@@ -67,3 +83,4 @@ constraints:
       ddl: PRIMARY KEY (id)
     owner: null
     schema: public
+    sql: PRIMARY KEY (id)

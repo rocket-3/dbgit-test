@@ -24,31 +24,36 @@ fields:
     name: code
     nameExactly: false
     order: 1
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: name
+    nameExactly: false
+    order: 2
     precision: 0
     scale: 0
     typeSQL: text NOT NULL
     typeUniversal: TEXT
-indexes:
-  Регионы_pk:
-    dependencies: !!set {
-      }
-    name: Регионы_pk
-    options:
-      ddl: CREATE UNIQUE INDEX "Регионы_pk" ON public.regions USING btree (code)
-      indexname: Регионы_pk
-      schemaname: public
-      tablename: regions
-    owner: null
-    schema: public
+indexes: {
+  }
 constraints:
-  pk_РЕГИОНЫ:
+  pk_regions:
     constraintType: p
     dependencies: !!set {
       }
-    name: pk_РЕГИОНЫ
+    name: pk_regions
     options:
-      constraint_name: pk_РЕГИОНЫ
+      constraint_name: pk_regions
       constraint_type: p
       ddl: PRIMARY KEY (code)
     owner: null
     schema: public
+    sql: PRIMARY KEY (code)

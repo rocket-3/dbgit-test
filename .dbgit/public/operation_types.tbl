@@ -41,6 +41,8 @@ indexes:
       tablename: operation_types
     owner: null
     schema: public
+    sql: CREATE UNIQUE INDEX "Типы изменения баланса_PK" ON public.operation_types
+      USING btree (name)
 constraints:
   pk_operation_types:
     constraintType: p
@@ -53,3 +55,4 @@ constraints:
       ddl: PRIMARY KEY (name)
     owner: null
     schema: public
+    sql: PRIMARY KEY (name)

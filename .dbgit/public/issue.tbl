@@ -389,16 +389,16 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: false
+    isNullable: true
     isPrimaryKey: false
     length: 0
     name: time_come
     nameExactly: false
-    order: 10
-    precision: 0
+    order: 29
+    precision: 32
     scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
+    typeSQL: integer
+    typeUniversal: NUMBER
 indexes: {
   }
 constraints:

@@ -3,10 +3,11 @@ dbType: POSTGRES
 dbVersion: '11.7'
 table:
   comment: null
-  dependencies: !!set {
-    }
+  dependencies: !!set
+    public/regions.tbl: null
   name: clients
   options:
+    dependencies: '{public/regions.tbl}'
     hasindexes: t
     hasrules: f
     hastriggers: t
@@ -84,6 +85,20 @@ fields:
     scale: 0
     typeSQL: text NOT NULL
     typeUniversal: TEXT
+  region_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: region_id
+    nameExactly: false
+    order: 7
+    precision: 32
+    scale: 0
+    typeSQL: integer
+    typeUniversal: NUMBER
 indexes:
   client_phone_fio_unique:
     dependencies: !!set {
@@ -124,6 +139,18 @@ constraints:
     owner: null
     schema: public
     sql: UNIQUE (phone, fio)
+  clients_fk_region:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: clients_fk_region
+    options:
+      constraint_name: clients_fk_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
+    owner: null
+    schema: public
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
   pk_clients:
     constraintType: p
     dependencies: !!set {

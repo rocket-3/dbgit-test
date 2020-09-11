@@ -29,11 +29,25 @@ fields:
     scale: 0
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
+  disabled:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: false
+    length: 0
+    name: disabled
+    nameExactly: false
+    order: 5
+    precision: 0
+    scale: 0
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
   fio:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: fio
@@ -41,7 +55,7 @@ fields:
     order: 3
     precision: 0
     scale: 0
-    typeSQL: text
+    typeSQL: text NOT NULL
     typeUniversal: TEXT
   phone:
     defaultValue: null
@@ -61,7 +75,7 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: region_id
@@ -69,7 +83,7 @@ fields:
     order: 2
     precision: 32
     scale: 0
-    typeSQL: integer
+    typeSQL: integer NOT NULL
     typeUniversal: NUMBER
 indexes:
   masters_pk:

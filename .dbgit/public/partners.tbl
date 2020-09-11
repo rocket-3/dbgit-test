@@ -3,10 +3,11 @@ dbType: POSTGRES
 dbVersion: '11.7'
 table:
   comment: null
-  dependencies: !!set {
-    }
+  dependencies: !!set
+    public/regions.tbl: null
   name: partners
   options:
+    dependencies: '{public/regions.tbl}'
     hasindexes: t
     hasrules: f
     hastriggers: t
@@ -70,9 +71,35 @@ fields:
     scale: 0
     typeSQL: text
     typeUniversal: TEXT
+  region_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: region_id
+    nameExactly: false
+    order: 5
+    precision: 32
+    scale: 0
+    typeSQL: integer
+    typeUniversal: NUMBER
 indexes: {
   }
 constraints:
+  fk_partners_region:
+    constraintType: f
+    dependencies: !!set {
+      }
+    name: fk_partners_region
+    options:
+      constraint_name: fk_partners_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
+    owner: null
+    schema: public
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
   pk_partners:
     constraintType: p
     dependencies: !!set {

@@ -5,10 +5,9 @@ table:
   comment: null
   dependencies: !!set
     public/issue.tbl: null
-    public/parts.tbl: null
   name: issue_parts
   options:
-    dependencies: '{public/issue.tbl,public/parts.tbl}'
+    dependencies: '{public/issue.tbl}'
     hasindexes: t
     hasrules: f
     hastriggers: t
@@ -16,6 +15,20 @@ table:
     table_name: issue_parts
   schema: public
 fields:
+  part_id:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: false
+    isPrimaryKey: true
+    length: 0
+    name: part_id
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text NOT NULL
+    typeUniversal: TEXT
   issue_id:
     defaultValue: null
     description: null
@@ -30,20 +43,6 @@ fields:
     scale: 0
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
-  part_id:
-    defaultValue: null
-    description: null
-    fixed: false
-    isNullable: false
-    isPrimaryKey: false
-    length: 0
-    name: part_id
-    nameExactly: false
-    order: 2
-    precision: 0
-    scale: 0
-    typeSQL: text NOT NULL
-    typeUniversal: TEXT
 indexes:
   issue_parts_fk1_idx:
     dependencies: !!set {
@@ -98,19 +97,6 @@ constraints:
     schema: public
     sql: FOREIGN KEY (issue_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
       RESTRICT
-  fk_issue_parts_part_id:
-    constraintType: f
-    dependencies: !!set {
-      }
-    name: fk_issue_parts_part_id
-    options:
-      constraint_name: fk_issue_parts_part_id
-      constraint_type: f
-      ddl: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE
-        RESTRICT
-    owner: null
-    schema: public
-    sql: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE RESTRICT
   pk_issue_parts:
     constraintType: p
     dependencies: !!set {

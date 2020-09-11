@@ -24,16 +24,30 @@ fields:
     length: 0
     name: id
     nameExactly: false
-    order: 1
+    order: 6
+    precision: 32
+    scale: 0
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+  code:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: code
+    nameExactly: false
+    order: 7
     precision: 0
     scale: 0
-    typeSQL: text NOT NULL
+    typeSQL: text
     typeUniversal: TEXT
   cost:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: cost
@@ -41,8 +55,50 @@ fields:
     order: 4
     precision: 53
     scale: 0
-    typeSQL: double precision
+    typeSQL: double precision NOT NULL
     typeUniversal: NUMBER
+  date_delivered:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: date_delivered
+    nameExactly: false
+    order: 10
+    precision: 0
+    scale: 0
+    typeSQL: date
+    typeUniversal: DATE
+  date_ordered:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: date_ordered
+    nameExactly: false
+    order: 9
+    precision: 0
+    scale: 0
+    typeSQL: date
+    typeUniversal: DATE
+  images:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: images
+    nameExactly: false
+    order: 8
+    precision: 0
+    scale: 0
+    typeSQL: text[]
+    typeUniversal: NATIVE
   name:
     defaultValue: null
     description: null
@@ -61,7 +117,7 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: part_category_id
@@ -69,35 +125,9 @@ fields:
     order: 2
     precision: 0
     scale: 0
-    typeSQL: text
+    typeSQL: text NOT NULL
     typeUniversal: TEXT
-  photos:
-    defaultValue: null
-    description: null
-    fixed: false
-    isNullable: true
-    isPrimaryKey: false
-    length: 0
-    name: photos
-    nameExactly: false
-    order: 5
-    precision: 0
-    scale: 0
-    typeSQL: json
-    typeUniversal: NATIVE
 indexes:
-  Запчасти_pk:
-    dependencies: !!set {
-      }
-    name: Запчасти_pk
-    options:
-      ddl: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
-      indexname: Запчасти_pk
-      schemaname: public
-      tablename: parts
-    owner: null
-    schema: public
-    sql: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
   Подкатегория запчасти_FK:
     dependencies: !!set {
       }
@@ -125,13 +155,13 @@ constraints:
     schema: public
     sql: FOREIGN KEY (part_category_id) REFERENCES part_category(id) ON UPDATE RESTRICT
       ON DELETE RESTRICT
-  pk_parts:
+  parts_pkey:
     constraintType: p
     dependencies: !!set {
       }
-    name: pk_parts
+    name: parts_pkey
     options:
-      constraint_name: pk_parts
+      constraint_name: parts_pkey
       constraint_type: p
       ddl: PRIMARY KEY (id)
     owner: null

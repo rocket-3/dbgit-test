@@ -113,6 +113,20 @@ fields:
     scale: 0
     typeSQL: integer
     typeUniversal: NUMBER
+  role:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: role
+    nameExactly: false
+    order: 9
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
   roles:
     defaultValue: null
     description: null

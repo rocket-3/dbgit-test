@@ -28,6 +28,20 @@ fields:
     scale: 0
     typeSQL: text NOT NULL
     typeUniversal: TEXT
+  name:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: name
+    nameExactly: false
+    order: 2
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
 indexes:
   Роли_pk:
     dependencies: !!set {

@@ -53,7 +53,7 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: by_guarantee
@@ -61,7 +61,7 @@ fields:
     order: 13
     precision: 0
     scale: 0
-    typeSQL: boolean
+    typeSQL: boolean NOT NULL
     typeUniversal: BOOLEAN
   client_id:
     defaultValue: null
@@ -87,6 +87,20 @@ fields:
     name: coeff_master
     nameExactly: false
     order: 18
+    precision: 53
+    scale: 0
+    typeSQL: double precision
+    typeUniversal: NUMBER
+  coeff_partner:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: coeff_partner
+    nameExactly: false
+    order: 26
     precision: 53
     scale: 0
     typeSQL: double precision
@@ -165,7 +179,7 @@ fields:
     defaultValue: null
     description: null
     fixed: false
-    isNullable: true
+    isNullable: false
     isPrimaryKey: false
     length: 0
     name: master_id
@@ -173,7 +187,7 @@ fields:
     order: 8
     precision: 32
     scale: 0
-    typeSQL: integer
+    typeSQL: integer NOT NULL
     typeUniversal: NUMBER
   matcher_id:
     defaultValue: null
@@ -226,10 +240,10 @@ fields:
     length: 0
     name: photos
     nameExactly: false
-    order: 25
+    order: 28
     precision: 0
     scale: 0
-    typeSQL: text[]
+    typeSQL: json
     typeUniversal: NATIVE
   region_id:
     defaultValue: null
@@ -329,14 +343,28 @@ fields:
     scale: 0
     typeSQL: double precision
     typeUniversal: NUMBER
-  sum_preray:
+  sum_partner:
     defaultValue: null
     description: null
     fixed: false
     isNullable: true
     isPrimaryKey: false
     length: 0
-    name: sum_preray
+    name: sum_partner
+    nameExactly: false
+    order: 27
+    precision: 53
+    scale: 0
+    typeSQL: double precision
+    typeUniversal: NUMBER
+  sum_prepay:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: sum_prepay
     nameExactly: false
     order: 19
     precision: 53

@@ -42,6 +42,20 @@ fields:
     scale: 0
     typeSQL: text
     typeUniversal: TEXT
+  commentario:
+    defaultValue: null
+    description: null
+    fixed: false
+    isNullable: true
+    isPrimaryKey: false
+    length: 0
+    name: commentario
+    nameExactly: false
+    order: 6
+    precision: 0
+    scale: 0
+    typeSQL: text
+    typeUniversal: TEXT
   fio:
     defaultValue: null
     description: null
@@ -56,20 +70,6 @@ fields:
     scale: 0
     typeSQL: text NOT NULL
     typeUniversal: TEXT
-  infos:
-    defaultValue: null
-    description: null
-    fixed: false
-    isNullable: true
-    isPrimaryKey: false
-    length: 0
-    name: infos
-    nameExactly: false
-    order: 5
-    precision: 0
-    scale: 0
-    typeSQL: text[]
-    typeUniversal: NATIVE
   phone:
     defaultValue: null
     description: null
@@ -85,6 +85,20 @@ fields:
     typeSQL: text NOT NULL
     typeUniversal: TEXT
 indexes:
+  client_phone_fio_unique:
+    dependencies: !!set {
+      }
+    name: client_phone_fio_unique
+    options:
+      ddl: CREATE UNIQUE INDEX client_phone_fio_unique ON public.clients USING btree
+        (phone, fio)
+      indexname: client_phone_fio_unique
+      schemaname: public
+      tablename: clients
+    owner: null
+    schema: public
+    sql: CREATE UNIQUE INDEX client_phone_fio_unique ON public.clients USING btree
+      (phone, fio)
   clients_pk:
     dependencies: !!set {
       }
@@ -98,6 +112,18 @@ indexes:
     schema: public
     sql: CREATE UNIQUE INDEX clients_pk ON public.clients USING btree (id)
 constraints:
+  client_phone_fio_unique:
+    constraintType: u
+    dependencies: !!set {
+      }
+    name: client_phone_fio_unique
+    options:
+      constraint_name: client_phone_fio_unique
+      constraint_type: u
+      ddl: UNIQUE (phone, fio)
+    owner: null
+    schema: public
+    sql: UNIQUE (phone, fio)
   pk_clients:
     constraintType: p
     dependencies: !!set {

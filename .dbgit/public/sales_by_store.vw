@@ -9,8 +9,8 @@ sqlObject:
     }
   options:
     ddl: |-
-      create or replace view public.sales_by_store as  SELECT ((c.city || ','::text) || cy.country) AS store,
-          ((m.first_name || ' '::text) || m.last_name) AS manager,
+      create or replace view public.sales_by_store as  SELECT (((c.city)::text || ','::text) || (cy.country)::text) AS store,
+          (((m.first_name)::text || ' '::text) || (m.last_name)::text) AS manager,
           sum(p.amount) AS total_sales
          FROM (((((((payment p
            JOIN rental r ON ((p.rental_id = r.rental_id)))
@@ -26,8 +26,8 @@ sqlObject:
     object_schema: public
     owner: postgres
   sql: |-
-    create or replace view public.sales_by_store as  SELECT ((c.city || ','::text) || cy.country) AS store,
-        ((m.first_name || ' '::text) || m.last_name) AS manager,
+    create or replace view public.sales_by_store as  SELECT (((c.city)::text || ','::text) || (cy.country)::text) AS store,
+        (((m.first_name)::text || ' '::text) || (m.last_name)::text) AS manager,
         sum(p.amount) AS total_sales
        FROM (((((((payment p
          JOIN rental r ON ((p.rental_id = r.rental_id)))

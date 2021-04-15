@@ -33,11 +33,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(25) NOT NULL
+    typeUniversal: STRING
     order: 2
     defaultValue: ''
-    length: 0
+    length: 25
     scale: 0
     precision: 0
     fixed: false
@@ -46,7 +46,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 3
     defaultValue: now()

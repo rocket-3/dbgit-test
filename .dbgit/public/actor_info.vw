@@ -12,7 +12,7 @@ sqlObject:
       create or replace view public.actor_info as  SELECT a.actor_id,
           a.first_name,
           a.last_name,
-          group_concat(DISTINCT ((c.name || ': '::text) || ( SELECT group_concat(f.title) AS group_concat
+          group_concat(DISTINCT (((c.name)::text || ': '::text) || ( SELECT group_concat((f.title)::text) AS group_concat
                  FROM ((film f
                    JOIN film_category fc_1 ON ((f.film_id = fc_1.film_id)))
                    JOIN film_actor fa_1 ON ((f.film_id = fa_1.film_id)))
@@ -30,7 +30,7 @@ sqlObject:
     create or replace view public.actor_info as  SELECT a.actor_id,
         a.first_name,
         a.last_name,
-        group_concat(DISTINCT ((c.name || ': '::text) || ( SELECT group_concat(f.title) AS group_concat
+        group_concat(DISTINCT (((c.name)::text || ': '::text) || ( SELECT group_concat((f.title)::text) AS group_concat
                FROM ((film f
                  JOIN film_category fc_1 ON ((f.film_id = fc_1.film_id)))
                  JOIN film_actor fa_1 ON ((f.film_id = fa_1.film_id)))

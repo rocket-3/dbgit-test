@@ -1,0 +1,290 @@
+name: public/film.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: film
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/language.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: film
+fields:
+  film_id:
+    name: film_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('film_film_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  title:
+    name: title
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  description:
+    name: description
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  release_year:
+    name: release_year
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  language_id:
+    name: language_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  original_language_id:
+    name: original_language_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: smallint
+    typeUniversal: NUMBER
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  rental_duration:
+    name: rental_duration
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 7
+    defaultValue: '3'
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  rental_rate:
+    name: rental_rate
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: numeric NOT NULL
+    typeUniversal: NUMBER
+    order: 8
+    defaultValue: '4.99'
+    length: 0
+    scale: 2
+    precision: 4
+    fixed: false
+  length:
+    name: length
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: smallint
+    typeUniversal: NUMBER
+    order: 9
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  replacement_cost:
+    name: replacement_cost
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: numeric NOT NULL
+    typeUniversal: NUMBER
+    order: 10
+    defaultValue: '19.99'
+    length: 0
+    scale: 2
+    precision: 5
+    fixed: false
+  rating:
+    name: rating
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: mpaa_rating
+    typeUniversal: NATIVE
+    order: 11
+    defaultValue: '''G''::mpaa_rating'
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 12
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  special_features:
+    name: special_features
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text[]
+    typeUniversal: NATIVE
+    order: 13
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  fulltext:
+    name: fulltext
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: tsvector NOT NULL
+    typeUniversal: NATIVE
+    order: 14
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  film_fulltext_idx:
+    name: film_fulltext_idx
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX film_fulltext_idx ON public.film USING gist (fulltext)
+      indexname: film_fulltext_idx
+      owner: postgres
+      schemaname: public
+      tablename: film
+    sql: CREATE INDEX film_fulltext_idx ON public.film USING gist (fulltext)
+  idx_fk_language_id:
+    name: idx_fk_language_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_language_id ON public.film USING btree (language_id)
+      indexname: idx_fk_language_id
+      owner: postgres
+      schemaname: public
+      tablename: film
+    sql: CREATE INDEX idx_fk_language_id ON public.film USING btree (language_id)
+  idx_fk_original_language_id:
+    name: idx_fk_original_language_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_original_language_id ON public.film USING btree (original_language_id)
+      indexname: idx_fk_original_language_id
+      owner: postgres
+      schemaname: public
+      tablename: film
+    sql: CREATE INDEX idx_fk_original_language_id ON public.film USING btree (original_language_id)
+  idx_title:
+    name: idx_title
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_title ON public.film USING btree (title)
+      indexname: idx_title
+      owner: postgres
+      schemaname: public
+      tablename: film
+    sql: CREATE INDEX idx_title ON public.film USING btree (title)
+constraints:
+  film_language_id_fkey:
+    name: film_language_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: film_language_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (language_id) REFERENCES language(language_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (language_id) REFERENCES language(language_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  film_original_language_id_fkey:
+    name: film_original_language_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: film_original_language_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (original_language_id) REFERENCES language(language_id) ON
+        UPDATE CASCADE ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (original_language_id) REFERENCES language(language_id) ON UPDATE
+      CASCADE ON DELETE RESTRICT
+  film_pkey:
+    name: film_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: film_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (film_id)
+      owner: postgres
+    sql: PRIMARY KEY (film_id)

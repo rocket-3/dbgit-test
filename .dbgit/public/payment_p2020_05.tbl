@@ -1,0 +1,181 @@
+name: public/payment_p2020_05.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: payment_p2020_05
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/rental.tbl: null
+    public/customer.tbl: null
+    public/payment.tbl: null
+    public/staff.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    parent: payment
+    pg_get_expr: FOR VALUES FROM ('2020-05-01 03:00:00+03') TO ('2020-06-01 03:00:00+03')
+    table_name: payment_p2020_05
+fields:
+  payment_id:
+    name: payment_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('payment_payment_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  customer_id:
+    name: customer_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  staff_id:
+    name: staff_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  rental_id:
+    name: rental_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  amount:
+    name: amount
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: numeric NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 2
+    precision: 5
+    fixed: false
+  payment_date:
+    name: payment_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_fk_payment_p2020_05_customer_id:
+    name: idx_fk_payment_p2020_05_customer_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_payment_p2020_05_customer_id ON public.payment_p2020_05
+        USING btree (customer_id)
+      indexname: idx_fk_payment_p2020_05_customer_id
+      owner: postgres
+      schemaname: public
+      tablename: payment_p2020_05
+    sql: CREATE INDEX idx_fk_payment_p2020_05_customer_id ON public.payment_p2020_05
+      USING btree (customer_id)
+  idx_fk_payment_p2020_05_staff_id:
+    name: idx_fk_payment_p2020_05_staff_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_payment_p2020_05_staff_id ON public.payment_p2020_05
+        USING btree (staff_id)
+      indexname: idx_fk_payment_p2020_05_staff_id
+      owner: postgres
+      schemaname: public
+      tablename: payment_p2020_05
+    sql: CREATE INDEX idx_fk_payment_p2020_05_staff_id ON public.payment_p2020_05
+      USING btree (staff_id)
+  payment_p2020_05_customer_id_idx:
+    name: payment_p2020_05_customer_id_idx
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX payment_p2020_05_customer_id_idx ON public.payment_p2020_05
+        USING btree (customer_id)
+      indexname: payment_p2020_05_customer_id_idx
+      owner: postgres
+      schemaname: public
+      tablename: payment_p2020_05
+    sql: CREATE INDEX payment_p2020_05_customer_id_idx ON public.payment_p2020_05
+      USING btree (customer_id)
+constraints:
+  payment_p2020_05_customer_id_fkey:
+    name: payment_p2020_05_customer_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_p2020_05_customer_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+      owner: postgres
+    sql: FOREIGN KEY (customer_id) REFERENCES customer(customer_id)
+  payment_p2020_05_rental_id_fkey:
+    name: payment_p2020_05_rental_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_p2020_05_rental_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (rental_id) REFERENCES rental(rental_id)
+      owner: postgres
+    sql: FOREIGN KEY (rental_id) REFERENCES rental(rental_id)
+  payment_p2020_05_staff_id_fkey:
+    name: payment_p2020_05_staff_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_p2020_05_staff_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
+      owner: postgres
+    sql: FOREIGN KEY (staff_id) REFERENCES staff(staff_id)

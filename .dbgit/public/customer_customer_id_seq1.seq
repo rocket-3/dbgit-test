@@ -1,0 +1,19 @@
+name: public/customer_customer_id_seq1.seq
+dbType: POSTGRES
+dbVersion: '11.7'
+sequence:
+  name: customer_customer_id_seq1
+  schema: public
+  owner: customer
+  dependencies: !!set {
+    }
+  options:
+    blocking_table: customer
+    cycle_option: 'NO'
+    increment: '1'
+    maximum_value: '2147483647'
+    minimum_value: '1'
+    owner: postgres
+    sequence_name: customer_customer_id_seq1
+    start_value: '1'
+  value: 0

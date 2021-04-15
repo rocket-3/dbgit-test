@@ -1,0 +1,193 @@
+name: public/rental.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: rental
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/inventory.tbl: null
+    public/customer.tbl: null
+    public/staff.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: rental
+fields:
+  rental_id:
+    name: rental_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('rental_rental_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  rental_date:
+    name: rental_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  inventory_id:
+    name: inventory_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  customer_id:
+    name: customer_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  return_date:
+    name: return_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: timestamp with time zone
+    typeUniversal: DATE
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  staff_id:
+    name: staff_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 7
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_fk_inventory_id:
+    name: idx_fk_inventory_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_inventory_id ON public.rental USING btree (inventory_id)
+      indexname: idx_fk_inventory_id
+      owner: postgres
+      schemaname: public
+      tablename: rental
+    sql: CREATE INDEX idx_fk_inventory_id ON public.rental USING btree (inventory_id)
+  idx_unq_rental_rental_date_inventory_id_customer_id:
+    name: idx_unq_rental_rental_date_inventory_id_customer_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX idx_unq_rental_rental_date_inventory_id_customer_id
+        ON public.rental USING btree (rental_date, inventory_id, customer_id)
+      indexname: idx_unq_rental_rental_date_inventory_id_customer_id
+      owner: postgres
+      schemaname: public
+      tablename: rental
+    sql: CREATE UNIQUE INDEX idx_unq_rental_rental_date_inventory_id_customer_id ON
+      public.rental USING btree (rental_date, inventory_id, customer_id)
+constraints:
+  rental_customer_id_fkey:
+    name: rental_customer_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: rental_customer_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  rental_inventory_id_fkey:
+    name: rental_inventory_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: rental_inventory_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (inventory_id) REFERENCES inventory(inventory_id) ON UPDATE
+        CASCADE ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (inventory_id) REFERENCES inventory(inventory_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  rental_pkey:
+    name: rental_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: rental_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (rental_id)
+      owner: postgres
+    sql: PRIMARY KEY (rental_id)
+  rental_staff_id_fkey:
+    name: rental_staff_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: rental_staff_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT

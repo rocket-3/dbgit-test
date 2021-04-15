@@ -1,0 +1,100 @@
+name: public/payment.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: payment
+  schema: public
+  owner: postgres
+  dependencies: !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: f
+    owner: postgres
+    partkeydef: RANGE (payment_date)
+    table_name: payment
+fields:
+  payment_id:
+    name: payment_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('payment_payment_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  customer_id:
+    name: customer_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  staff_id:
+    name: staff_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  rental_id:
+    name: rental_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  amount:
+    name: amount
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: numeric NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 2
+    precision: 5
+    fixed: false
+  payment_date:
+    name: payment_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes: {
+  }
+constraints: {
+  }

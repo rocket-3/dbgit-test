@@ -1,0 +1,127 @@
+name: public/inventory.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: inventory
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/store.tbl: null
+    public/film.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: inventory
+fields:
+  inventory_id:
+    name: inventory_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('inventory_inventory_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  film_id:
+    name: film_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  store_id:
+    name: store_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 4
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_store_id_film_id:
+    name: idx_store_id_film_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_store_id_film_id ON public.inventory USING btree (store_id,
+        film_id)
+      indexname: idx_store_id_film_id
+      owner: postgres
+      schemaname: public
+      tablename: inventory
+    sql: CREATE INDEX idx_store_id_film_id ON public.inventory USING btree (store_id,
+      film_id)
+constraints:
+  inventory_film_id_fkey:
+    name: inventory_film_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: inventory_film_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (film_id) REFERENCES film(film_id) ON UPDATE CASCADE ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (film_id) REFERENCES film(film_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT
+  inventory_pkey:
+    name: inventory_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: inventory_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (inventory_id)
+      owner: postgres
+    sql: PRIMARY KEY (inventory_id)
+  inventory_store_id_fkey:
+    name: inventory_store_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: inventory_store_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT

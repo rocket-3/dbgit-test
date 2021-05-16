@@ -20,22 +20,22 @@ fields:
     description: ''
     isPrimaryKey: true
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
-    order: 1
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 4
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   part_category_id:
     name: part_category_id
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: text
+    isNullable: false
+    typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
-    order: 2
+    order: 1
     defaultValue: ''
     length: 0
     scale: 0
@@ -48,7 +48,7 @@ fields:
     isNullable: true
     typeSQL: text
     typeUniversal: STRING_NATIVE
-    order: 3
+    order: 2
     defaultValue: ''
     length: 0
     scale: 0
@@ -58,47 +58,74 @@ fields:
     name: cost
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: double precision
+    isNullable: false
+    typeSQL: double precision NOT NULL
     typeUniversal: NUMBER
-    order: 4
+    order: 3
     defaultValue: ''
     length: 0
     scale: 0
     precision: 53
     fixed: false
-  photos:
-    name: photos
+  code:
+    name: code
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: json
-    typeUniversal: NATIVE
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
     order: 5
     defaultValue: ''
     length: 0
     scale: 0
     precision: 0
     fixed: false
+  images:
+    name: images
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text[]
+    typeUniversal: NATIVE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  date_ordered:
+    name: date_ordered
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: date
+    typeUniversal: DATE
+    order: 7
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  date_delivered:
+    name: date_delivered
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: date
+    typeUniversal: DATE
+    order: 8
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
 indexes:
-  Запчасти_pk:
-    name: Запчасти_pk
-    schema: public
-    owner: postgres
-    dependencies: &id001 !!set {
-      }
-    options:
-      ddl: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
-      indexname: Запчасти_pk
-      owner: postgres
-      schemaname: public
-      tablename: parts
-    sql: CREATE UNIQUE INDEX "Запчасти_pk" ON public.parts USING btree (id)
   Подкатегория запчасти_FK:
     name: Подкатегория запчасти_FK
     schema: public
     owner: postgres
-    dependencies: *id001
+    dependencies: &id001 !!set {
+      }
     options:
       ddl: CREATE INDEX "Подкатегория запчасти_FK" ON public.parts USING btree (part_category_id)
       indexname: Подкатегория запчасти_FK
@@ -121,14 +148,14 @@ constraints:
       owner: postgres
     sql: FOREIGN KEY (part_category_id) REFERENCES part_category(id) ON UPDATE RESTRICT
       ON DELETE RESTRICT
-  pk_parts:
-    name: pk_parts
+  parts_pkey:
+    name: parts_pkey
     schema: public
     owner: postgres
     dependencies: *id001
     constraintType: p
     options:
-      constraint_name: pk_parts
+      constraint_name: parts_pkey
       constraint_type: p
       ddl: PRIMARY KEY (id)
       owner: postgres

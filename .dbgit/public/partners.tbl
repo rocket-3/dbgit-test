@@ -5,8 +5,8 @@ table:
   name: partners
   schema: public
   owner: postgres
-  dependencies: &id001 !!set {
-    }
+  dependencies: !!set
+    public/regions.tbl: null
   comment: ''
   options:
     hasindexes: t
@@ -67,9 +67,35 @@ fields:
     scale: 0
     precision: 53
     fixed: false
+  region_id:
+    name: region_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
 indexes: {
   }
 constraints:
+  fk_partners_region:
+    name: fk_partners_region
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    constraintType: f
+    options:
+      constraint_name: fk_partners_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
+      owner: postgres
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
   pk_partners:
     name: pk_partners
     schema: public

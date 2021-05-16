@@ -138,19 +138,6 @@ fields:
     scale: 0
     precision: 0
     fixed: false
-  time_come:
-    name: time_come
-    description: ''
-    isPrimaryKey: false
-    isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
-    order: 10
-    defaultValue: ''
-    length: 0
-    scale: 0
-    precision: 0
-    fixed: false
   partner_id:
     name: partner_id
     description: ''
@@ -158,7 +145,7 @@ fields:
     isNullable: true
     typeSQL: integer
     typeUniversal: NUMBER
-    order: 11
+    order: 10
     defaultValue: ''
     length: 0
     scale: 0
@@ -171,7 +158,7 @@ fields:
     isNullable: false
     typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
-    order: 12
+    order: 11
     defaultValue: ''
     length: 0
     scale: 0
@@ -184,7 +171,7 @@ fields:
     isNullable: false
     typeSQL: boolean NOT NULL
     typeUniversal: BOOLEAN
-    order: 13
+    order: 12
     defaultValue: ''
     length: 0
     scale: 0
@@ -197,7 +184,7 @@ fields:
     isNullable: false
     typeSQL: boolean NOT NULL
     typeUniversal: BOOLEAN
-    order: 14
+    order: 13
     defaultValue: ''
     length: 0
     scale: 0
@@ -210,7 +197,7 @@ fields:
     isNullable: false
     typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
-    order: 15
+    order: 14
     defaultValue: ''
     length: 0
     scale: 0
@@ -223,7 +210,7 @@ fields:
     isNullable: true
     typeSQL: integer
     typeUniversal: NUMBER
-    order: 16
+    order: 15
     defaultValue: ''
     length: 0
     scale: 0
@@ -236,7 +223,7 @@ fields:
     isNullable: true
     typeSQL: date
     typeUniversal: DATE
-    order: 17
+    order: 16
     defaultValue: ''
     length: 0
     scale: 0
@@ -249,7 +236,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 18
+    order: 17
     defaultValue: ''
     length: 0
     scale: 0
@@ -262,7 +249,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 19
+    order: 18
     defaultValue: ''
     length: 0
     scale: 0
@@ -275,7 +262,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 20
+    order: 19
     defaultValue: ''
     length: 0
     scale: 0
@@ -288,7 +275,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 21
+    order: 20
     defaultValue: ''
     length: 0
     scale: 0
@@ -301,7 +288,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 22
+    order: 21
     defaultValue: ''
     length: 0
     scale: 0
@@ -314,7 +301,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 23
+    order: 22
     defaultValue: ''
     length: 0
     scale: 0
@@ -327,7 +314,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 24
+    order: 23
     defaultValue: ''
     length: 0
     scale: 0
@@ -340,7 +327,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 25
+    order: 24
     defaultValue: ''
     length: 0
     scale: 0
@@ -353,7 +340,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 26
+    order: 25
     defaultValue: ''
     length: 0
     scale: 0
@@ -366,11 +353,24 @@ fields:
     isNullable: true
     typeSQL: json
     typeUniversal: NATIVE
-    order: 27
+    order: 26
     defaultValue: ''
     length: 0
     scale: 0
     precision: 0
+    fixed: false
+  time_come:
+    name: time_come
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 27
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
     fixed: false
 indexes: {
   }

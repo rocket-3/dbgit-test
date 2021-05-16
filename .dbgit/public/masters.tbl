@@ -32,8 +32,8 @@ fields:
     name: region_id
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: integer
+    isNullable: false
+    typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 2
     defaultValue: ''
@@ -45,8 +45,8 @@ fields:
     name: fio
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: text
+    isNullable: false
+    typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
     order: 3
     defaultValue: ''
@@ -62,6 +62,19 @@ fields:
     typeSQL: text
     typeUniversal: STRING_NATIVE
     order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  disabled:
+    name: disabled
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
+    order: 5
     defaultValue: ''
     length: 0
     scale: 0

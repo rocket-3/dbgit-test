@@ -5,8 +5,8 @@ table:
   name: clients
   schema: public
   owner: postgres
-  dependencies: &id001 !!set {
-    }
+  dependencies: !!set
+    public/regions.tbl: null
   comment: ''
   options:
     hasindexes: t
@@ -80,12 +80,26 @@ fields:
     scale: 0
     precision: 0
     fixed: false
+  region_id:
+    name: region_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
 indexes:
   client_phone_fio_unique:
     name: client_phone_fio_unique
     schema: public
     owner: postgres
-    dependencies: *id001
+    dependencies: &id001 !!set {
+      }
     options:
       ddl: CREATE UNIQUE INDEX client_phone_fio_unique ON public.clients USING btree
         (phone, fio)
@@ -120,6 +134,18 @@ constraints:
       ddl: UNIQUE (phone, fio)
       owner: postgres
     sql: UNIQUE (phone, fio)
+  clients_fk_region:
+    name: clients_fk_region
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: clients_fk_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
+      owner: postgres
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) NOT VALID
   pk_clients:
     name: pk_clients
     schema: public

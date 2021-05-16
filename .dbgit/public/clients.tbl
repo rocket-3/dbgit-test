@@ -23,7 +23,7 @@ fields:
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 1
-    defaultValue: nextval('"Клиенты_ID клиента_seq"'::regclass)
+    defaultValue: nextval('client_id_seq'::regclass)
     length: 0
     scale: 0
     precision: 32

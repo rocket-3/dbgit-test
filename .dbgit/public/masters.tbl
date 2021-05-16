@@ -23,7 +23,7 @@ fields:
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 1
-    defaultValue: nextval('"Мастера_ID мастера_seq"'::regclass)
+    defaultValue: nextval('master_id_seq'::regclass)
     length: 0
     scale: 0
     precision: 32
@@ -33,13 +33,13 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer
+    typeUniversal: NUMBER
     order: 2
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   fio:
     name: fio
@@ -68,40 +68,28 @@ fields:
     precision: 0
     fixed: false
 indexes:
-  Мастера_pk:
-    name: Мастера_pk
+  masters_pk:
+    name: masters_pk
     schema: public
     owner: postgres
     dependencies: &id001 !!set {
       }
     options:
-      ddl: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
-      indexname: Мастера_pk
+      ddl: CREATE UNIQUE INDEX masters_pk ON public.masters USING btree (id)
+      indexname: masters_pk
       owner: postgres
       schemaname: public
       tablename: masters
-    sql: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
-  Регион мастера_FK:
-    name: Регион мастера_FK
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
-      indexname: Регион мастера_FK
-      owner: postgres
-      schemaname: public
-      tablename: masters
-    sql: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
+    sql: CREATE UNIQUE INDEX masters_pk ON public.masters USING btree (id)
 constraints:
-  FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ:
-    name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+  fk_masters_regions:
+    name: fk_masters_regions
     schema: public
     owner: postgres
     dependencies: *id001
     constraintType: f
     options:
-      constraint_name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+      constraint_name: fk_masters_regions
       constraint_type: f
       ddl: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON
         DELETE RESTRICT

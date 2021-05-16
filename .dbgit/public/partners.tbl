@@ -20,9 +20,22 @@ fields:
     description: ''
     isPrimaryKey: true
     isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  name:
+    name: name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
     typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
-    order: 1
+    order: 2
     defaultValue: ''
     length: 0
     scale: 0
@@ -35,7 +48,7 @@ fields:
     isNullable: true
     typeSQL: text
     typeUniversal: STRING_NATIVE
-    order: 2
+    order: 3
     defaultValue: ''
     length: 0
     scale: 0
@@ -48,25 +61,14 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 3
+    order: 4
     defaultValue: ''
     length: 0
     scale: 0
     precision: 53
     fixed: false
-indexes:
-  partners_pk:
-    name: partners_pk
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE UNIQUE INDEX partners_pk ON public.partners USING btree (id)
-      indexname: partners_pk
-      owner: postgres
-      schemaname: public
-      tablename: partners
-    sql: CREATE UNIQUE INDEX partners_pk ON public.partners USING btree (id)
+indexes: {
+  }
 constraints:
   pk_partners:
     name: pk_partners

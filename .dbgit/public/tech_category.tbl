@@ -20,6 +20,19 @@ fields:
     description: ''
     isPrimaryKey: true
     isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: nextval('tech_category_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  name:
+    name: name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
     typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
     order: 1

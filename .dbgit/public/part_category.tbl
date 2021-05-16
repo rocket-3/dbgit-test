@@ -33,49 +33,23 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer
+    typeUniversal: NUMBER
     order: 2
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
-indexes:
-  Категория техники_FK:
-    name: Категория техники_FK
-    schema: public
-    owner: postgres
-    dependencies: &id001 !!set {
-      }
-    options:
-      ddl: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree
-        (tech_category_id)
-      indexname: Категория техники_FK
-      owner: postgres
-      schemaname: public
-      tablename: part_category
-    sql: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree (tech_category_id)
-  Подкатегории запчастей_PK:
-    name: Подкатегории запчастей_PK
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category
-        USING btree (id)
-      indexname: Подкатегории запчастей_PK
-      owner: postgres
-      schemaname: public
-      tablename: part_category
-    sql: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category USING
-      btree (id)
+indexes: {
+  }
 constraints:
   fk_part_category_tech:
     name: fk_part_category_tech
     schema: public
     owner: postgres
-    dependencies: *id001
+    dependencies: &id001 !!set {
+      }
     constraintType: f
     options:
       constraint_name: fk_part_category_tech

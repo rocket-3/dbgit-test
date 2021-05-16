@@ -64,14 +64,14 @@ fields:
     name: region_id
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
     order: 4
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   client_id:
     name: client_id
@@ -91,26 +91,26 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
     order: 6
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   techcategory_id:
     name: techcategory_id
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
     order: 7
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   master_id:
     name: master_id
@@ -142,8 +142,8 @@ fields:
     name: time_come
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: text
+    isNullable: false
+    typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
     order: 10
     defaultValue: ''
@@ -156,13 +156,13 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer
+    typeUniversal: NUMBER
     order: 11
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   status:
     name: status
@@ -190,6 +190,19 @@ fields:
     scale: 0
     precision: 0
     fixed: false
+  is_okay:
+    name: is_okay
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
+    order: 14
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
   commentario:
     name: commentario
     description: ''
@@ -197,7 +210,7 @@ fields:
     isNullable: false
     typeSQL: text NOT NULL
     typeUniversal: STRING_NATIVE
-    order: 14
+    order: 15
     defaultValue: ''
     length: 0
     scale: 0
@@ -210,7 +223,7 @@ fields:
     isNullable: true
     typeSQL: integer
     typeUniversal: NUMBER
-    order: 15
+    order: 16
     defaultValue: ''
     length: 0
     scale: 0
@@ -223,7 +236,7 @@ fields:
     isNullable: true
     typeSQL: date
     typeUniversal: DATE
-    order: 16
+    order: 17
     defaultValue: ''
     length: 0
     scale: 0
@@ -233,10 +246,10 @@ fields:
     name: coeff_master
     description: ''
     isPrimaryKey: false
-    isNullable: false
-    typeSQL: double precision NOT NULL
+    isNullable: true
+    typeSQL: double precision
     typeUniversal: NUMBER
-    order: 17
+    order: 18
     defaultValue: ''
     length: 0
     scale: 0
@@ -249,7 +262,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 18
+    order: 19
     defaultValue: ''
     length: 0
     scale: 0
@@ -257,19 +270,6 @@ fields:
     fixed: false
   sum_final:
     name: sum_final
-    description: ''
-    isPrimaryKey: false
-    isNullable: true
-    typeSQL: double precision
-    typeUniversal: NUMBER
-    order: 19
-    defaultValue: ''
-    length: 0
-    scale: 0
-    precision: 53
-    fixed: false
-  sum_dirty:
-    name: sum_dirty
     description: ''
     isPrimaryKey: false
     isNullable: true
@@ -294,6 +294,19 @@ fields:
     scale: 0
     precision: 53
     fixed: false
+  sum_dirty:
+    name: sum_dirty
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 22
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
   sum_matcher:
     name: sum_matcher
     description: ''
@@ -301,7 +314,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 22
+    order: 23
     defaultValue: ''
     length: 0
     scale: 0
@@ -314,7 +327,7 @@ fields:
     isNullable: true
     typeSQL: double precision
     typeUniversal: NUMBER
-    order: 23
+    order: 24
     defaultValue: ''
     length: 0
     scale: 0
@@ -327,128 +340,21 @@ fields:
     isNullable: true
     typeSQL: text[]
     typeUniversal: NATIVE
-    order: 24
+    order: 25
     defaultValue: ''
     length: 0
     scale: 0
     precision: 0
     fixed: false
-indexes:
-  issue_category_id:
-    name: issue_category_id
-    schema: public
-    owner: postgres
-    dependencies: &id001 !!set {
-      }
-    options:
-      ddl: CREATE INDEX issue_category_id ON public.issue USING btree (issuecategory_id)
-      indexname: issue_category_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_category_id ON public.issue USING btree (issuecategory_id)
-  issue_client_id:
-    name: issue_client_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_client_id ON public.issue USING btree (client_id)
-      indexname: issue_client_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_client_id ON public.issue USING btree (client_id)
-  issue_master_id:
-    name: issue_master_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_master_id ON public.issue USING btree (master_id)
-      indexname: issue_master_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_master_id ON public.issue USING btree (master_id)
-  issue_matcher_id:
-    name: issue_matcher_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_matcher_id ON public.issue USING btree (matcher_id)
-      indexname: issue_matcher_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_matcher_id ON public.issue USING btree (matcher_id)
-  issue_operator_id:
-    name: issue_operator_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_operator_id ON public.issue USING btree (oper_id)
-      indexname: issue_operator_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_operator_id ON public.issue USING btree (oper_id)
-  issue_partner_id:
-    name: issue_partner_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_partner_id ON public.issue USING btree (partner_id)
-      indexname: issue_partner_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_partner_id ON public.issue USING btree (partner_id)
-  issue_pk:
-    name: issue_pk
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE UNIQUE INDEX issue_pk ON public.issue USING btree (id)
-      indexname: issue_pk
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE UNIQUE INDEX issue_pk ON public.issue USING btree (id)
-  issue_region_id:
-    name: issue_region_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_region_id ON public.issue USING btree (region_id)
-      indexname: issue_region_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_region_id ON public.issue USING btree (region_id)
-  issue_tech_category_id:
-    name: issue_tech_category_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX issue_tech_category_id ON public.issue USING btree (techcategory_id)
-      indexname: issue_tech_category_id
-      owner: postgres
-      schemaname: public
-      tablename: issue
-    sql: CREATE INDEX issue_tech_category_id ON public.issue USING btree (techcategory_id)
+indexes: {
+  }
 constraints:
   fk_issue_category_id:
     name: fk_issue_category_id
     schema: public
     owner: postgres
-    dependencies: *id001
+    dependencies: &id001 !!set {
+      }
     constraintType: f
     options:
       constraint_name: fk_issue_category_id

@@ -1,0 +1,163 @@
+name: public/balance.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: balance
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/issue.tbl: null
+    public/operation_types.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: balance
+fields:
+  operation_id:
+    name: operation_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('balance_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  operation_type_name:
+    name: operation_type_name
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  issue_id:
+    name: issue_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  operation_date:
+    name: operation_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: date NOT NULL
+    typeUniversal: DATE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  diff:
+    name: diff
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: double precision NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  commentario:
+    name: commentario
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  balance_issue_fk:
+    name: balance_issue_fk
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX balance_issue_fk ON public.balance USING btree (issue_id)
+      indexname: balance_issue_fk
+      owner: postgres
+      schemaname: public
+      tablename: balance
+    sql: CREATE INDEX balance_issue_fk ON public.balance USING btree (issue_id)
+  operation_types_fk:
+    name: operation_types_fk
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX operation_types_fk ON public.balance USING btree (operation_type_name)
+      indexname: operation_types_fk
+      owner: postgres
+      schemaname: public
+      tablename: balance
+    sql: CREATE INDEX operation_types_fk ON public.balance USING btree (operation_type_name)
+constraints:
+  fk_balance_issue:
+    name: fk_balance_issue
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_balance_issue
+      constraint_type: f
+      ddl: FOREIGN KEY (operation_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (operation_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_balance_operation_type:
+    name: fk_balance_operation_type
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_balance_operation_type
+      constraint_type: f
+      ddl: FOREIGN KEY (operation_type_name) REFERENCES operation_types(name) ON UPDATE
+        RESTRICT ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (operation_type_name) REFERENCES operation_types(name) ON UPDATE
+      RESTRICT ON DELETE RESTRICT
+  pk_balance:
+    name: pk_balance
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_balance
+      constraint_type: p
+      ddl: PRIMARY KEY (operation_id)
+      owner: postgres
+    sql: PRIMARY KEY (operation_id)

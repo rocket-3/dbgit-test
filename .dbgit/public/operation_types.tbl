@@ -1,0 +1,58 @@
+name: public/operation_types.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: operation_types
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: operation_types
+fields:
+  name:
+    name: name
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  Типы изменения баланса_PK:
+    name: Типы изменения баланса_PK
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX "Типы изменения баланса_PK" ON public.operation_types
+        USING btree (name)
+      indexname: Типы изменения баланса_PK
+      owner: postgres
+      schemaname: public
+      tablename: operation_types
+    sql: CREATE UNIQUE INDEX "Типы изменения баланса_PK" ON public.operation_types
+      USING btree (name)
+constraints:
+  pk_operation_types:
+    name: pk_operation_types
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_operation_types
+      constraint_type: p
+      ddl: PRIMARY KEY (name)
+      owner: postgres
+    sql: PRIMARY KEY (name)

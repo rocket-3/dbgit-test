@@ -1,0 +1,99 @@
+name: public/part_category.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: part_category
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/tech_category.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: part_category
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  tech_category_id:
+    name: tech_category_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  Категория техники_FK:
+    name: Категория техники_FK
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree
+        (tech_category_id)
+      indexname: Категория техники_FK
+      owner: postgres
+      schemaname: public
+      tablename: part_category
+    sql: CREATE INDEX "Категория техники_FK" ON public.part_category USING btree (tech_category_id)
+  Подкатегории запчастей_PK:
+    name: Подкатегории запчастей_PK
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category
+        USING btree (id)
+      indexname: Подкатегории запчастей_PK
+      owner: postgres
+      schemaname: public
+      tablename: part_category
+    sql: CREATE UNIQUE INDEX "Подкатегории запчастей_PK" ON public.part_category USING
+      btree (id)
+constraints:
+  fk_part_category_tech:
+    name: fk_part_category_tech
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_part_category_tech
+      constraint_type: f
+      ddl: FOREIGN KEY (tech_category_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (tech_category_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
+  pk_part_category:
+    name: pk_part_category
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_part_category
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

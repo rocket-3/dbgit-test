@@ -1,0 +1,58 @@
+name: public/tech_category.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: tech_category
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: tech_category
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  tech_category_pk:
+    name: tech_category_pk
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX tech_category_pk ON public.tech_category USING btree
+        (id)
+      indexname: tech_category_pk
+      owner: postgres
+      schemaname: public
+      tablename: tech_category
+    sql: CREATE UNIQUE INDEX tech_category_pk ON public.tech_category USING btree
+      (id)
+constraints:
+  pk_tech_category:
+    name: pk_tech_category
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_tech_category
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

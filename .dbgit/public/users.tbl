@@ -1,0 +1,198 @@
+name: public/users.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: users
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/regions.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: users
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('"Пользователи_ID пользователя_seq"'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  region_code:
+    name: region_code
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  fio:
+    name: fio
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  config:
+    name: config
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  disabled:
+    name: disabled
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  roles:
+    name: roles
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text[]
+    typeUniversal: NATIVE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  hash:
+    name: hash
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: character varying NOT NULL
+    typeUniversal: STRING
+    order: 7
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  login:
+    name: login
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 8
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  ak_login:
+    name: ak_login
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE UNIQUE INDEX ak_login ON public.users USING btree (login)
+      indexname: ak_login
+      owner: postgres
+      schemaname: public
+      tablename: users
+    sql: CREATE UNIQUE INDEX ak_login ON public.users USING btree (login)
+  users_pk_idx:
+    name: users_pk_idx
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX users_pk_idx ON public.users USING btree (id)
+      indexname: users_pk_idx
+      owner: postgres
+      schemaname: public
+      tablename: users
+    sql: CREATE UNIQUE INDEX users_pk_idx ON public.users USING btree (id)
+  users_region_fk_idx:
+    name: users_region_fk_idx
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX users_region_fk_idx ON public.users USING btree (region_code)
+      indexname: users_region_fk_idx
+      owner: postgres
+      schemaname: public
+      tablename: users
+    sql: CREATE INDEX users_region_fk_idx ON public.users USING btree (region_code)
+constraints:
+  ak_login:
+    name: ak_login
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: u
+    options:
+      constraint_name: ak_login
+      constraint_type: u
+      ddl: UNIQUE (login)
+      owner: postgres
+    sql: UNIQUE (login)
+  fk_region:
+    name: fk_region
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_region
+      constraint_type: f
+      ddl: FOREIGN KEY (region_code) REFERENCES regions(code) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (region_code) REFERENCES regions(code) ON UPDATE RESTRICT ON
+      DELETE RESTRICT
+  pk_users:
+    name: pk_users
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_users
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

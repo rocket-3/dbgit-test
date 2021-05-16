@@ -1,0 +1,124 @@
+name: public/issue_parts.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: issue_parts
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/issue.tbl: null
+    public/parts.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: issue_parts
+fields:
+  issue_id:
+    name: issue_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  part_id:
+    name: part_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  issue_parts_fk1_idx:
+    name: issue_parts_fk1_idx
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX issue_parts_fk1_idx ON public.issue_parts USING btree (issue_id)
+      indexname: issue_parts_fk1_idx
+      owner: postgres
+      schemaname: public
+      tablename: issue_parts
+    sql: CREATE INDEX issue_parts_fk1_idx ON public.issue_parts USING btree (issue_id)
+  issue_parts_fk2_idx:
+    name: issue_parts_fk2_idx
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_parts_fk2_idx ON public.issue_parts USING btree (issue_id)
+      indexname: issue_parts_fk2_idx
+      owner: postgres
+      schemaname: public
+      tablename: issue_parts
+    sql: CREATE INDEX issue_parts_fk2_idx ON public.issue_parts USING btree (issue_id)
+  issue_parts_pk_idx:
+    name: issue_parts_pk_idx
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX issue_parts_pk_idx ON public.issue_parts USING btree
+        (issue_id, part_id)
+      indexname: issue_parts_pk_idx
+      owner: postgres
+      schemaname: public
+      tablename: issue_parts
+    sql: CREATE UNIQUE INDEX issue_parts_pk_idx ON public.issue_parts USING btree
+      (issue_id, part_id)
+constraints:
+  fk_issue_parts_issue_id:
+    name: fk_issue_parts_issue_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_parts_issue_id
+      constraint_type: f
+      ddl: FOREIGN KEY (issue_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (issue_id) REFERENCES issue(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_parts_part_id:
+    name: fk_issue_parts_part_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_parts_part_id
+      constraint_type: f
+      ddl: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (part_id) REFERENCES parts(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+  pk_issue_parts:
+    name: pk_issue_parts
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_issue_parts
+      constraint_type: p
+      ddl: PRIMARY KEY (issue_id, part_id)
+      owner: postgres
+    sql: PRIMARY KEY (issue_id, part_id)

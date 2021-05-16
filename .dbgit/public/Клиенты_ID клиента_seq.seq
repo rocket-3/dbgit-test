@@ -1,0 +1,18 @@
+name: public/Клиенты_ID клиента_seq.seq
+dbType: POSTGRES
+dbVersion: '11.7'
+sequence:
+  name: Клиенты_ID клиента_seq
+  schema: public
+  owner: ''
+  dependencies: !!set {
+    }
+  options:
+    cycle_option: 'NO'
+    increment: '1'
+    maximum_value: '2147483647'
+    minimum_value: '1'
+    owner: postgres
+    sequence_name: Клиенты_ID клиента_seq
+    start_value: '1'
+  value: 0

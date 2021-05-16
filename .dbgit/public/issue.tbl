@@ -116,8 +116,8 @@ fields:
     name: master_id
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: integer
+    isNullable: false
+    typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 8
     defaultValue: ''
@@ -181,8 +181,8 @@ fields:
     name: by_guarantee
     description: ''
     isPrimaryKey: false
-    isNullable: true
-    typeSQL: boolean
+    isNullable: false
+    typeSQL: boolean NOT NULL
     typeUniversal: BOOLEAN
     order: 13
     defaultValue: ''
@@ -255,8 +255,8 @@ fields:
     scale: 0
     precision: 53
     fixed: false
-  sum_preray:
-    name: sum_preray
+  sum_prepay:
+    name: sum_prepay
     description: ''
     isPrimaryKey: false
     isNullable: true
@@ -333,14 +333,40 @@ fields:
     scale: 0
     precision: 53
     fixed: false
+  coeff_partner:
+    name: coeff_partner
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 25
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_partner:
+    name: sum_partner
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 26
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
   photos:
     name: photos
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text[]
+    typeSQL: json
     typeUniversal: NATIVE
-    order: 25
+    order: 27
     defaultValue: ''
     length: 0
     scale: 0

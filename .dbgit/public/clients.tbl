@@ -67,13 +67,13 @@ fields:
     scale: 0
     precision: 0
     fixed: false
-  infos:
-    name: infos
+  commentario:
+    name: commentario
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text[]
-    typeUniversal: NATIVE
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
     order: 5
     defaultValue: ''
     length: 0
@@ -81,6 +81,20 @@ fields:
     precision: 0
     fixed: false
 indexes:
+  client_phone_fio_unique:
+    name: client_phone_fio_unique
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX client_phone_fio_unique ON public.clients USING btree
+        (phone, fio)
+      indexname: client_phone_fio_unique
+      owner: postgres
+      schemaname: public
+      tablename: clients
+    sql: CREATE UNIQUE INDEX client_phone_fio_unique ON public.clients USING btree
+      (phone, fio)
   clients_pk:
     name: clients_pk
     schema: public
@@ -94,6 +108,18 @@ indexes:
       tablename: clients
     sql: CREATE UNIQUE INDEX clients_pk ON public.clients USING btree (id)
 constraints:
+  client_phone_fio_unique:
+    name: client_phone_fio_unique
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: u
+    options:
+      constraint_name: client_phone_fio_unique
+      constraint_type: u
+      ddl: UNIQUE (phone, fio)
+      owner: postgres
+    sql: UNIQUE (phone, fio)
   pk_clients:
     name: pk_clients
     schema: public

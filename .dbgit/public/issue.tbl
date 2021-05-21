@@ -1,0 +1,569 @@
+name: public/issue.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: issue
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/users.tbl: null
+    public/issue_category.tbl: null
+    public/masters.tbl: null
+    public/partners.tbl: null
+    public/regions.tbl: null
+    public/tech_category.tbl: null
+    public/clients.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: issue
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  date_got:
+    name: date_got
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: date NOT NULL
+    typeUniversal: DATE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  oper_id:
+    name: oper_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  region_id:
+    name: region_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  client_id:
+    name: client_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  issuecategory_id:
+    name: issuecategory_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  techcategory_id:
+    name: techcategory_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 7
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  master_id:
+    name: master_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 8
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  address:
+    name: address
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 9
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  time_come:
+    name: time_come
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 10
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  partner_id:
+    name: partner_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 11
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  status:
+    name: status
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 12
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  by_guarantee:
+    name: by_guarantee
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: boolean
+    typeUniversal: BOOLEAN
+    order: 13
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  commentario:
+    name: commentario
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 14
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  matcher_id:
+    name: matcher_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 15
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  date_return:
+    name: date_return
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: date
+    typeUniversal: DATE
+    order: 16
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  coeff_master:
+    name: coeff_master
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: double precision NOT NULL
+    typeUniversal: NUMBER
+    order: 17
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_preray:
+    name: sum_preray
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 18
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_final:
+    name: sum_final
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 19
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_dirty:
+    name: sum_dirty
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 20
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_master:
+    name: sum_master
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 21
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_matcher:
+    name: sum_matcher
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 22
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  sum_cash:
+    name: sum_cash
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 23
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+  photos:
+    name: photos
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text[]
+    typeUniversal: NATIVE
+    order: 24
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  issue_category_id:
+    name: issue_category_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX issue_category_id ON public.issue USING btree (issuecategory_id)
+      indexname: issue_category_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_category_id ON public.issue USING btree (issuecategory_id)
+  issue_client_id:
+    name: issue_client_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_client_id ON public.issue USING btree (client_id)
+      indexname: issue_client_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_client_id ON public.issue USING btree (client_id)
+  issue_master_id:
+    name: issue_master_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_master_id ON public.issue USING btree (master_id)
+      indexname: issue_master_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_master_id ON public.issue USING btree (master_id)
+  issue_matcher_id:
+    name: issue_matcher_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_matcher_id ON public.issue USING btree (matcher_id)
+      indexname: issue_matcher_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_matcher_id ON public.issue USING btree (matcher_id)
+  issue_operator_id:
+    name: issue_operator_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_operator_id ON public.issue USING btree (oper_id)
+      indexname: issue_operator_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_operator_id ON public.issue USING btree (oper_id)
+  issue_partner_id:
+    name: issue_partner_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_partner_id ON public.issue USING btree (partner_id)
+      indexname: issue_partner_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_partner_id ON public.issue USING btree (partner_id)
+  issue_pk:
+    name: issue_pk
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX issue_pk ON public.issue USING btree (id)
+      indexname: issue_pk
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE UNIQUE INDEX issue_pk ON public.issue USING btree (id)
+  issue_region_id:
+    name: issue_region_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_region_id ON public.issue USING btree (region_id)
+      indexname: issue_region_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_region_id ON public.issue USING btree (region_id)
+  issue_tech_category_id:
+    name: issue_tech_category_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX issue_tech_category_id ON public.issue USING btree (techcategory_id)
+      indexname: issue_tech_category_id
+      owner: postgres
+      schemaname: public
+      tablename: issue
+    sql: CREATE INDEX issue_tech_category_id ON public.issue USING btree (techcategory_id)
+constraints:
+  fk_issue_category_id:
+    name: fk_issue_category_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_category_id
+      constraint_type: f
+      ddl: FOREIGN KEY (techcategory_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (techcategory_id) REFERENCES tech_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
+  fk_issue_client_id:
+    name: fk_issue_client_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_client_id
+      constraint_type: f
+      ddl: FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (client_id) REFERENCES clients(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_master_id:
+    name: fk_issue_master_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_master_id
+      constraint_type: f
+      ddl: FOREIGN KEY (master_id) REFERENCES masters(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (master_id) REFERENCES masters(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_matcher_id:
+    name: fk_issue_matcher_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_matcher_id
+      constraint_type: f
+      ddl: FOREIGN KEY (matcher_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (matcher_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_oper_id:
+    name: fk_issue_oper_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_oper_id
+      constraint_type: f
+      ddl: FOREIGN KEY (oper_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (oper_id) REFERENCES users(id) ON UPDATE RESTRICT ON DELETE RESTRICT
+  fk_issue_partner_id:
+    name: fk_issue_partner_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_partner_id
+      constraint_type: f
+      ddl: FOREIGN KEY (partner_id) REFERENCES partners(id) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (partner_id) REFERENCES partners(id) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_region_id:
+    name: fk_issue_region_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_region_id
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  fk_issue_tech_category_id:
+    name: fk_issue_tech_category_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_issue_tech_category_id
+      constraint_type: f
+      ddl: FOREIGN KEY (issuecategory_id) REFERENCES issue_category(id) ON UPDATE
+        RESTRICT ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (issuecategory_id) REFERENCES issue_category(id) ON UPDATE RESTRICT
+      ON DELETE RESTRICT
+  pk_issue_id:
+    name: pk_issue_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_issue_id
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

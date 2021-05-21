@@ -1,0 +1,122 @@
+name: public/masters.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: masters
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/regions.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: masters
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('"Мастера_ID мастера_seq"'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  region_id:
+    name: region_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  fio:
+    name: fio
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  phone:
+    name: phone
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  Мастера_pk:
+    name: Мастера_pk
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
+      indexname: Мастера_pk
+      owner: postgres
+      schemaname: public
+      tablename: masters
+    sql: CREATE UNIQUE INDEX "Мастера_pk" ON public.masters USING btree (id)
+  Регион мастера_FK:
+    name: Регион мастера_FK
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
+      indexname: Регион мастера_FK
+      owner: postgres
+      schemaname: public
+      tablename: masters
+    sql: CREATE INDEX "Регион мастера_FK" ON public.masters USING btree (region_id)
+constraints:
+  FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ:
+    name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: FK_МАСТЕРА_РЕГИОН МА_РЕГИОНЫ
+      constraint_type: f
+      ddl: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (region_id) REFERENCES regions(code) ON UPDATE RESTRICT ON DELETE
+      RESTRICT
+  pk_masters:
+    name: pk_masters
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_masters
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

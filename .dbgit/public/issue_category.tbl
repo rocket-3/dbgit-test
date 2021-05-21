@@ -1,0 +1,71 @@
+name: public/issue_category.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: issue_category
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: issue_category
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  mult:
+    name: mult
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: double precision
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 53
+    fixed: false
+indexes:
+  issue_category_pk:
+    name: issue_category_pk
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX issue_category_pk ON public.issue_category USING btree
+        (id)
+      indexname: issue_category_pk
+      owner: postgres
+      schemaname: public
+      tablename: issue_category
+    sql: CREATE UNIQUE INDEX issue_category_pk ON public.issue_category USING btree
+      (id)
+constraints:
+  pk_issue_category:
+    name: pk_issue_category
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_issue_category
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

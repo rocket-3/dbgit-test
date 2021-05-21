@@ -1,0 +1,108 @@
+name: public/clients.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: clients
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: clients
+fields:
+  id:
+    name: id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('"Клиенты_ID клиента_seq"'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  fio:
+    name: fio
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  phone:
+    name: phone
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  address:
+    name: address
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  infos:
+    name: infos
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text[]
+    typeUniversal: NATIVE
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  clients_pk:
+    name: clients_pk
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE UNIQUE INDEX clients_pk ON public.clients USING btree (id)
+      indexname: clients_pk
+      owner: postgres
+      schemaname: public
+      tablename: clients
+    sql: CREATE UNIQUE INDEX clients_pk ON public.clients USING btree (id)
+constraints:
+  pk_clients:
+    name: pk_clients
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: pk_clients
+      constraint_type: p
+      ddl: PRIMARY KEY (id)
+      owner: postgres
+    sql: PRIMARY KEY (id)

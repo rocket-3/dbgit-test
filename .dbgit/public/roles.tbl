@@ -28,6 +28,19 @@ fields:
     scale: 0
     precision: 0
     fixed: false
+  name:
+    name: name
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
 indexes:
   Роли_pk:
     name: Роли_pk

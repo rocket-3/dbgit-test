@@ -23,7 +23,7 @@ fields:
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 1
-    defaultValue: nextval('"Пользователи_ID пользователя_seq"'::regclass)
+    defaultValue: nextval('user_id_seq'::regclass)
     length: 0
     scale: 0
     precision: 32
@@ -33,13 +33,13 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: integer
+    typeUniversal: NUMBER
     order: 2
     defaultValue: ''
     length: 0
     scale: 0
-    precision: 0
+    precision: 32
     fixed: false
   fio:
     name: fio

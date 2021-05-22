@@ -1,0 +1,12 @@
+*
+!public/*.ts
+!public/*.sch
+!public/*.seq
+!public/*.tbl
+!public/*.pkg
+!public/*.trg
+!public/*.prc
+!public/*.fnc
+!public/*.vw
+!public/*.blob
+!public/*.csv

@@ -1,0 +1,112 @@
+name: public/store.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: store
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/address.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: store
+fields:
+  store_id:
+    name: store_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('store_store_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  manager_staff_id:
+    name: manager_staff_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  address_id:
+    name: address_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 4
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_unq_manager_staff_id:
+    name: idx_unq_manager_staff_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE UNIQUE INDEX idx_unq_manager_staff_id ON public.store USING btree
+        (manager_staff_id)
+      indexname: idx_unq_manager_staff_id
+      owner: postgres
+      schemaname: public
+      tablename: store
+    sql: CREATE UNIQUE INDEX idx_unq_manager_staff_id ON public.store USING btree
+      (manager_staff_id)
+constraints:
+  store_address_id_fkey:
+    name: store_address_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: store_address_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  store_pkey:
+    name: store_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: store_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (store_id)
+      owner: postgres
+    sql: PRIMARY KEY (store_id)

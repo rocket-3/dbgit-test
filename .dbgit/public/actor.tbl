@@ -1,0 +1,95 @@
+name: public/actor.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: actor
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: actor
+fields:
+  actor_id:
+    name: actor_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('actor_actor_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  first_name:
+    name: first_name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_name:
+    name: last_name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 4
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_actor_last_name:
+    name: idx_actor_last_name
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_actor_last_name ON public.actor USING btree (last_name)
+      indexname: idx_actor_last_name
+      owner: postgres
+      schemaname: public
+      tablename: actor
+    sql: CREATE INDEX idx_actor_last_name ON public.actor USING btree (last_name)
+constraints:
+  actor_pkey:
+    name: actor_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: actor_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (actor_id)
+      owner: postgres
+    sql: PRIMARY KEY (actor_id)

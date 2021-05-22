@@ -1,0 +1,227 @@
+name: public/customer.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: customer
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/store.tbl: null
+    public/address.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: customer
+fields:
+  customer_id:
+    name: customer_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('customer_customer_id_seq1'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  store_id:
+    name: store_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  first_name:
+    name: first_name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_name:
+    name: last_name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  email:
+    name: email
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  address_id:
+    name: address_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  activebool:
+    name: activebool
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: boolean NOT NULL
+    typeUniversal: BOOLEAN
+    order: 7
+    defaultValue: 'true'
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  create_date:
+    name: create_date
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: date NOT NULL
+    typeUniversal: DATE
+    order: 8
+    defaultValue: ('now'::text)::date
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: timestamp with time zone
+    typeUniversal: DATE
+    order: 9
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  active:
+    name: active
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: integer
+    typeUniversal: NUMBER
+    order: 10
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+indexes:
+  idx_fk_address_id:
+    name: idx_fk_address_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_address_id ON public.customer USING btree (address_id)
+      indexname: idx_fk_address_id
+      owner: postgres
+      schemaname: public
+      tablename: customer
+    sql: CREATE INDEX idx_fk_address_id ON public.customer USING btree (address_id)
+  idx_fk_store_id:
+    name: idx_fk_store_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_store_id ON public.customer USING btree (store_id)
+      indexname: idx_fk_store_id
+      owner: postgres
+      schemaname: public
+      tablename: customer
+    sql: CREATE INDEX idx_fk_store_id ON public.customer USING btree (store_id)
+  idx_last_name:
+    name: idx_last_name
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_last_name ON public.customer USING btree (last_name)
+      indexname: idx_last_name
+      owner: postgres
+      schemaname: public
+      tablename: customer
+    sql: CREATE INDEX idx_last_name ON public.customer USING btree (last_name)
+constraints:
+  customer_address_id_fkey:
+    name: customer_address_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: customer_address_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  customer_pkey:
+    name: customer_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: customer_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (customer_id)
+      owner: postgres
+    sql: PRIMARY KEY (customer_id)
+  customer_store_id_fkey:
+    name: customer_store_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: customer_store_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT

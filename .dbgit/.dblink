@@ -1,3 +1,3 @@
-url=jdbc:postgresql://localhost/pagilla
+url=jdbc:postgresql://localhost/dvdrental
 user=postgres
 password=Kan:al*098

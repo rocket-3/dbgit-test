@@ -33,11 +33,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(255) NOT NULL
+    typeUniversal: STRING
     order: 2
     defaultValue: ''
-    length: 0
+    length: 255
     scale: 0
     precision: 0
     fixed: false
@@ -80,19 +80,6 @@ fields:
     scale: 0
     precision: 16
     fixed: false
-  original_language_id:
-    name: original_language_id
-    description: ''
-    isPrimaryKey: false
-    isNullable: true
-    typeSQL: smallint
-    typeUniversal: NUMBER
-    order: 6
-    defaultValue: ''
-    length: 0
-    scale: 0
-    precision: 16
-    fixed: false
   rental_duration:
     name: rental_duration
     description: ''
@@ -100,7 +87,7 @@ fields:
     isNullable: false
     typeSQL: smallint NOT NULL
     typeUniversal: NUMBER
-    order: 7
+    order: 6
     defaultValue: '3'
     length: 0
     scale: 0
@@ -113,7 +100,7 @@ fields:
     isNullable: false
     typeSQL: numeric NOT NULL
     typeUniversal: NUMBER
-    order: 8
+    order: 7
     defaultValue: '4.99'
     length: 0
     scale: 2
@@ -126,7 +113,7 @@ fields:
     isNullable: true
     typeSQL: smallint
     typeUniversal: NUMBER
-    order: 9
+    order: 8
     defaultValue: ''
     length: 0
     scale: 0
@@ -139,7 +126,7 @@ fields:
     isNullable: false
     typeSQL: numeric NOT NULL
     typeUniversal: NUMBER
-    order: 10
+    order: 9
     defaultValue: '19.99'
     length: 0
     scale: 2
@@ -152,7 +139,7 @@ fields:
     isNullable: true
     typeSQL: mpaa_rating
     typeUniversal: NATIVE
-    order: 11
+    order: 10
     defaultValue: '''G''::mpaa_rating'
     length: 0
     scale: 0
@@ -163,9 +150,9 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
-    order: 12
+    order: 11
     defaultValue: now()
     length: 0
     scale: 0
@@ -178,7 +165,7 @@ fields:
     isNullable: true
     typeSQL: text[]
     typeUniversal: NATIVE
-    order: 13
+    order: 12
     defaultValue: ''
     length: 0
     scale: 0
@@ -191,7 +178,7 @@ fields:
     isNullable: false
     typeSQL: tsvector NOT NULL
     typeUniversal: NATIVE
-    order: 14
+    order: 13
     defaultValue: ''
     length: 0
     scale: 0
@@ -223,18 +210,6 @@ indexes:
       schemaname: public
       tablename: film
     sql: CREATE INDEX idx_fk_language_id ON public.film USING btree (language_id)
-  idx_fk_original_language_id:
-    name: idx_fk_original_language_id
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    options:
-      ddl: CREATE INDEX idx_fk_original_language_id ON public.film USING btree (original_language_id)
-      indexname: idx_fk_original_language_id
-      owner: postgres
-      schemaname: public
-      tablename: film
-    sql: CREATE INDEX idx_fk_original_language_id ON public.film USING btree (original_language_id)
   idx_title:
     name: idx_title
     schema: public
@@ -262,20 +237,6 @@ constraints:
       owner: postgres
     sql: FOREIGN KEY (language_id) REFERENCES language(language_id) ON UPDATE CASCADE
       ON DELETE RESTRICT
-  film_original_language_id_fkey:
-    name: film_original_language_id_fkey
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    constraintType: f
-    options:
-      constraint_name: film_original_language_id_fkey
-      constraint_type: f
-      ddl: FOREIGN KEY (original_language_id) REFERENCES language(language_id) ON
-        UPDATE CASCADE ON DELETE RESTRICT
-      owner: postgres
-    sql: FOREIGN KEY (original_language_id) REFERENCES language(language_id) ON UPDATE
-      CASCADE ON DELETE RESTRICT
   film_pkey:
     name: film_pkey
     schema: public

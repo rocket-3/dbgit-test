@@ -5,21 +5,22 @@ table:
   name: payment
   schema: public
   owner: postgres
-  dependencies: !!set {
-    }
+  dependencies: !!set
+    public/rental.tbl: null
+    public/customer.tbl: null
+    public/staff.tbl: null
   comment: ''
   options:
     hasindexes: t
     hasrules: f
-    hastriggers: f
+    hastriggers: t
     owner: postgres
-    partkeydef: RANGE (payment_date)
     table_name: payment
 fields:
   payment_id:
     name: payment_id
     description: ''
-    isPrimaryKey: false
+    isPrimaryKey: true
     isNullable: false
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
@@ -86,7 +87,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 6
     defaultValue: ''
@@ -94,7 +95,96 @@ fields:
     scale: 0
     precision: 0
     fixed: false
-indexes: {
-  }
-constraints: {
-  }
+indexes:
+  idx_fk_customer_id:
+    name: idx_fk_customer_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_customer_id ON public.payment USING btree (customer_id)
+      indexname: idx_fk_customer_id
+      owner: postgres
+      schemaname: public
+      tablename: payment
+    sql: CREATE INDEX idx_fk_customer_id ON public.payment USING btree (customer_id)
+  idx_fk_rental_id:
+    name: idx_fk_rental_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_rental_id ON public.payment USING btree (rental_id)
+      indexname: idx_fk_rental_id
+      owner: postgres
+      schemaname: public
+      tablename: payment
+    sql: CREATE INDEX idx_fk_rental_id ON public.payment USING btree (rental_id)
+  idx_fk_staff_id:
+    name: idx_fk_staff_id
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    options:
+      ddl: CREATE INDEX idx_fk_staff_id ON public.payment USING btree (staff_id)
+      indexname: idx_fk_staff_id
+      owner: postgres
+      schemaname: public
+      tablename: payment
+    sql: CREATE INDEX idx_fk_staff_id ON public.payment USING btree (staff_id)
+constraints:
+  payment_customer_id_fkey:
+    name: payment_customer_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_customer_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (customer_id) REFERENCES customer(customer_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  payment_pkey:
+    name: payment_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: payment_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (payment_id)
+      owner: postgres
+    sql: PRIMARY KEY (payment_id)
+  payment_rental_id_fkey:
+    name: payment_rental_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_rental_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (rental_id) REFERENCES rental(rental_id) ON UPDATE CASCADE
+        ON DELETE SET NULL
+      owner: postgres
+    sql: FOREIGN KEY (rental_id) REFERENCES rental(rental_id) ON UPDATE CASCADE ON
+      DELETE SET NULL
+  payment_staff_id_fkey:
+    name: payment_staff_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: payment_staff_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON
+        DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT

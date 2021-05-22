@@ -1,0 +1,162 @@
+name: public/address.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: address
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/city.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: address
+fields:
+  address_id:
+    name: address_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('address_address_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  address:
+    name: address
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  address2:
+    name: address2
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  district:
+    name: district
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 4
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  city_id:
+    name: city_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 5
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  postal_code:
+    name: postal_code
+    description: ''
+    isPrimaryKey: false
+    isNullable: true
+    typeSQL: text
+    typeUniversal: STRING_NATIVE
+    order: 6
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  phone:
+    name: phone
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 7
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 8
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_fk_city_id:
+    name: idx_fk_city_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_city_id ON public.address USING btree (city_id)
+      indexname: idx_fk_city_id
+      owner: postgres
+      schemaname: public
+      tablename: address
+    sql: CREATE INDEX idx_fk_city_id ON public.address USING btree (city_id)
+constraints:
+  address_city_id_fkey:
+    name: address_city_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: address_city_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (city_id) REFERENCES city(city_id) ON UPDATE CASCADE ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (city_id) REFERENCES city(city_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT
+  address_pkey:
+    name: address_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: address_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (address_id)
+      owner: postgres
+    sql: PRIMARY KEY (address_id)

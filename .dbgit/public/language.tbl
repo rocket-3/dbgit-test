@@ -1,0 +1,71 @@
+name: public/language.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: language
+  schema: public
+  owner: postgres
+  dependencies: &id001 !!set {
+    }
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: language
+fields:
+  language_id:
+    name: language_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('language_language_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  name:
+    name: name
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: character(20) NOT NULL
+    typeUniversal: STRING
+    order: 2
+    defaultValue: ''
+    length: 20
+    scale: 0
+    precision: 0
+    fixed: true
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 3
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes: {
+  }
+constraints:
+  language_pkey:
+    name: language_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: language_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (language_id)
+      owner: postgres
+    sql: PRIMARY KEY (language_id)

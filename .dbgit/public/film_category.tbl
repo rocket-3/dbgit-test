@@ -1,0 +1,101 @@
+name: public/film_category.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: film_category
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/category.tbl: null
+    public/film.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: film_category
+fields:
+  film_id:
+    name: film_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  category_id:
+    name: category_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 3
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes: {
+  }
+constraints:
+  film_category_category_id_fkey:
+    name: film_category_category_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    constraintType: f
+    options:
+      constraint_name: film_category_category_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (category_id) REFERENCES category(category_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (category_id) REFERENCES category(category_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  film_category_film_id_fkey:
+    name: film_category_film_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: film_category_film_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (film_id) REFERENCES film(film_id) ON UPDATE CASCADE ON DELETE
+        RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (film_id) REFERENCES film(film_id) ON UPDATE CASCADE ON DELETE
+      RESTRICT
+  film_category_pkey:
+    name: film_category_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: film_category_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (film_id, category_id)
+      owner: postgres
+    sql: PRIMARY KEY (film_id, category_id)

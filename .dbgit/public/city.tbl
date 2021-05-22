@@ -1,0 +1,110 @@
+name: public/city.tbl
+dbType: POSTGRES
+dbVersion: '11.7'
+table:
+  name: city
+  schema: public
+  owner: postgres
+  dependencies: !!set
+    public/country.tbl: null
+  comment: ''
+  options:
+    hasindexes: t
+    hasrules: f
+    hastriggers: t
+    owner: postgres
+    table_name: city
+fields:
+  city_id:
+    name: city_id
+    description: ''
+    isPrimaryKey: true
+    isNullable: false
+    typeSQL: integer NOT NULL
+    typeUniversal: NUMBER
+    order: 1
+    defaultValue: nextval('city_city_id_seq'::regclass)
+    length: 0
+    scale: 0
+    precision: 32
+    fixed: false
+  city:
+    name: city
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: text NOT NULL
+    typeUniversal: STRING_NATIVE
+    order: 2
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+  country_id:
+    name: country_id
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: smallint NOT NULL
+    typeUniversal: NUMBER
+    order: 3
+    defaultValue: ''
+    length: 0
+    scale: 0
+    precision: 16
+    fixed: false
+  last_update:
+    name: last_update
+    description: ''
+    isPrimaryKey: false
+    isNullable: false
+    typeSQL: timestamp with time zone NOT NULL
+    typeUniversal: DATE
+    order: 4
+    defaultValue: now()
+    length: 0
+    scale: 0
+    precision: 0
+    fixed: false
+indexes:
+  idx_fk_country_id:
+    name: idx_fk_country_id
+    schema: public
+    owner: postgres
+    dependencies: &id001 !!set {
+      }
+    options:
+      ddl: CREATE INDEX idx_fk_country_id ON public.city USING btree (country_id)
+      indexname: idx_fk_country_id
+      owner: postgres
+      schemaname: public
+      tablename: city
+    sql: CREATE INDEX idx_fk_country_id ON public.city USING btree (country_id)
+constraints:
+  city_country_id_fkey:
+    name: city_country_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: city_country_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (country_id) REFERENCES country(country_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (country_id) REFERENCES country(country_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  city_pkey:
+    name: city_pkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: p
+    options:
+      constraint_name: city_pkey
+      constraint_type: p
+      ddl: PRIMARY KEY (city_id)
+      owner: postgres
+    sql: PRIMARY KEY (city_id)

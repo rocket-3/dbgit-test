@@ -33,11 +33,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(50) NOT NULL
+    typeUniversal: STRING
     order: 2
     defaultValue: ''
-    length: 0
+    length: 50
     scale: 0
     precision: 0
     fixed: false
@@ -46,11 +46,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(50)
+    typeUniversal: STRING
     order: 3
     defaultValue: ''
-    length: 0
+    length: 50
     scale: 0
     precision: 0
     fixed: false
@@ -59,11 +59,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(20) NOT NULL
+    typeUniversal: STRING
     order: 4
     defaultValue: ''
-    length: 0
+    length: 20
     scale: 0
     precision: 0
     fixed: false
@@ -85,11 +85,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(10)
+    typeUniversal: STRING
     order: 6
     defaultValue: ''
-    length: 0
+    length: 10
     scale: 0
     precision: 0
     fixed: false
@@ -98,11 +98,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(20) NOT NULL
+    typeUniversal: STRING
     order: 7
     defaultValue: ''
-    length: 0
+    length: 20
     scale: 0
     precision: 0
     fixed: false
@@ -111,7 +111,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 8
     defaultValue: now()
@@ -134,20 +134,6 @@ indexes:
       tablename: address
     sql: CREATE INDEX idx_fk_city_id ON public.address USING btree (city_id)
 constraints:
-  address_city_id_fkey:
-    name: address_city_id_fkey
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    constraintType: f
-    options:
-      constraint_name: address_city_id_fkey
-      constraint_type: f
-      ddl: FOREIGN KEY (city_id) REFERENCES city(city_id) ON UPDATE CASCADE ON DELETE
-        RESTRICT
-      owner: postgres
-    sql: FOREIGN KEY (city_id) REFERENCES city(city_id) ON UPDATE CASCADE ON DELETE
-      RESTRICT
   address_pkey:
     name: address_pkey
     schema: public
@@ -160,3 +146,15 @@ constraints:
       ddl: PRIMARY KEY (address_id)
       owner: postgres
     sql: PRIMARY KEY (address_id)
+  fk_address_city:
+    name: fk_address_city
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_address_city
+      constraint_type: f
+      ddl: FOREIGN KEY (city_id) REFERENCES city(city_id)
+      owner: postgres
+    sql: FOREIGN KEY (city_id) REFERENCES city(city_id)

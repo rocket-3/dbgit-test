@@ -10,7 +10,7 @@ sqlObject:
   options:
     ddl: |-
       create or replace view public.customer_list as  SELECT cu.customer_id AS id,
-          ((cu.first_name || ' '::text) || cu.last_name) AS name,
+          (((cu.first_name)::text || ' '::text) || (cu.last_name)::text) AS name,
           a.address,
           a.postal_code AS "zip code",
           a.phone,
@@ -30,7 +30,7 @@ sqlObject:
     owner: postgres
   sql: |-
     create or replace view public.customer_list as  SELECT cu.customer_id AS id,
-        ((cu.first_name || ' '::text) || cu.last_name) AS name,
+        (((cu.first_name)::text || ' '::text) || (cu.last_name)::text) AS name,
         a.address,
         a.postal_code AS "zip code",
         a.phone,

@@ -10,7 +10,7 @@ sqlObject:
   options:
     ddl: |-
       create or replace view public.staff_list as  SELECT s.staff_id AS id,
-          ((s.first_name || ' '::text) || s.last_name) AS name,
+          (((s.first_name)::text || ' '::text) || (s.last_name)::text) AS name,
           a.address,
           a.postal_code AS "zip code",
           a.phone,
@@ -26,7 +26,7 @@ sqlObject:
     owner: postgres
   sql: |-
     create or replace view public.staff_list as  SELECT s.staff_id AS id,
-        ((s.first_name || ' '::text) || s.last_name) AS name,
+        (((s.first_name)::text || ' '::text) || (s.last_name)::text) AS name,
         a.address,
         a.postal_code AS "zip code",
         a.phone,

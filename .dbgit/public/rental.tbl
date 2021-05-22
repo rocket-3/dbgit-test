@@ -35,7 +35,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 2
     defaultValue: ''
@@ -74,7 +74,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: timestamp with time zone
+    typeSQL: timestamp without time zone
     typeUniversal: DATE
     order: 5
     defaultValue: ''
@@ -100,7 +100,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 7
     defaultValue: now()
@@ -177,17 +177,15 @@ constraints:
       ddl: PRIMARY KEY (rental_id)
       owner: postgres
     sql: PRIMARY KEY (rental_id)
-  rental_staff_id_fkey:
-    name: rental_staff_id_fkey
+  rental_staff_id_key:
+    name: rental_staff_id_key
     schema: public
     owner: postgres
     dependencies: *id001
     constraintType: f
     options:
-      constraint_name: rental_staff_id_fkey
+      constraint_name: rental_staff_id_key
       constraint_type: f
-      ddl: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON
-        DELETE RESTRICT
+      ddl: FOREIGN KEY (staff_id) REFERENCES staff(staff_id)
       owner: postgres
-    sql: FOREIGN KEY (staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE ON DELETE
-      RESTRICT
+    sql: FOREIGN KEY (staff_id) REFERENCES staff(staff_id)

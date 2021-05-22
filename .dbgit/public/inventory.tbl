@@ -6,7 +6,6 @@ table:
   schema: public
   owner: postgres
   dependencies: !!set
-    public/store.tbl: null
     public/film.tbl: null
   comment: ''
   options:
@@ -60,7 +59,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 4
     defaultValue: now()
@@ -111,17 +110,3 @@ constraints:
       ddl: PRIMARY KEY (inventory_id)
       owner: postgres
     sql: PRIMARY KEY (inventory_id)
-  inventory_store_id_fkey:
-    name: inventory_store_id_fkey
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    constraintType: f
-    options:
-      constraint_name: inventory_store_id_fkey
-      constraint_type: f
-      ddl: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON
-        DELETE RESTRICT
-      owner: postgres
-    sql: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON DELETE
-      RESTRICT

@@ -16,7 +16,7 @@ sqlObject:
           film.rental_rate AS price,
           film.length,
           film.rating,
-          group_concat(((actor.first_name || ' '::text) || actor.last_name)) AS actors
+          group_concat((((actor.first_name)::text || ' '::text) || (actor.last_name)::text)) AS actors
          FROM ((((category
            LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))
            LEFT JOIN film ON ((film_category.film_id = film.film_id)))
@@ -34,7 +34,7 @@ sqlObject:
         film.rental_rate AS price,
         film.length,
         film.rating,
-        group_concat(((actor.first_name || ' '::text) || actor.last_name)) AS actors
+        group_concat((((actor.first_name)::text || ' '::text) || (actor.last_name)::text)) AS actors
        FROM ((((category
          LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))
          LEFT JOIN film ON ((film_category.film_id = film.film_id)))

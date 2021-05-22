@@ -33,11 +33,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(50) NOT NULL
+    typeUniversal: STRING
     order: 2
     defaultValue: ''
-    length: 0
+    length: 50
     scale: 0
     precision: 0
     fixed: false
@@ -59,7 +59,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 4
     defaultValue: now()
@@ -82,20 +82,6 @@ indexes:
       tablename: city
     sql: CREATE INDEX idx_fk_country_id ON public.city USING btree (country_id)
 constraints:
-  city_country_id_fkey:
-    name: city_country_id_fkey
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    constraintType: f
-    options:
-      constraint_name: city_country_id_fkey
-      constraint_type: f
-      ddl: FOREIGN KEY (country_id) REFERENCES country(country_id) ON UPDATE CASCADE
-        ON DELETE RESTRICT
-      owner: postgres
-    sql: FOREIGN KEY (country_id) REFERENCES country(country_id) ON UPDATE CASCADE
-      ON DELETE RESTRICT
   city_pkey:
     name: city_pkey
     schema: public
@@ -108,3 +94,15 @@ constraints:
       ddl: PRIMARY KEY (city_id)
       owner: postgres
     sql: PRIMARY KEY (city_id)
+  fk_city:
+    name: fk_city
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: fk_city
+      constraint_type: f
+      ddl: FOREIGN KEY (country_id) REFERENCES country(country_id)
+      owner: postgres
+    sql: FOREIGN KEY (country_id) REFERENCES country(country_id)

@@ -6,7 +6,6 @@ table:
   schema: public
   owner: postgres
   dependencies: !!set
-    public/store.tbl: null
     public/address.tbl: null
   comment: ''
   options:
@@ -24,7 +23,7 @@ fields:
     typeSQL: integer NOT NULL
     typeUniversal: NUMBER
     order: 1
-    defaultValue: nextval('customer_customer_id_seq1'::regclass)
+    defaultValue: nextval('customer_customer_id_seq'::regclass)
     length: 0
     scale: 0
     precision: 32
@@ -47,11 +46,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(45) NOT NULL
+    typeUniversal: STRING
     order: 3
     defaultValue: ''
-    length: 0
+    length: 45
     scale: 0
     precision: 0
     fixed: false
@@ -60,11 +59,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: text NOT NULL
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(45) NOT NULL
+    typeUniversal: STRING
     order: 4
     defaultValue: ''
-    length: 0
+    length: 45
     scale: 0
     precision: 0
     fixed: false
@@ -73,11 +72,11 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: text
-    typeUniversal: STRING_NATIVE
+    typeSQL: character varying(50)
+    typeUniversal: STRING
     order: 5
     defaultValue: ''
-    length: 0
+    length: 50
     scale: 0
     precision: 0
     fixed: false
@@ -125,7 +124,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: true
-    typeSQL: timestamp with time zone
+    typeSQL: timestamp without time zone
     typeUniversal: DATE
     order: 9
     defaultValue: now()
@@ -211,17 +210,3 @@ constraints:
       ddl: PRIMARY KEY (customer_id)
       owner: postgres
     sql: PRIMARY KEY (customer_id)
-  customer_store_id_fkey:
-    name: customer_store_id_fkey
-    schema: public
-    owner: postgres
-    dependencies: *id001
-    constraintType: f
-    options:
-      constraint_name: customer_store_id_fkey
-      constraint_type: f
-      ddl: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON
-        DELETE RESTRICT
-      owner: postgres
-    sql: FOREIGN KEY (store_id) REFERENCES store(store_id) ON UPDATE CASCADE ON DELETE
-      RESTRICT

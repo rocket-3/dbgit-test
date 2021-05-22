@@ -16,7 +16,7 @@ sqlObject:
           film.rental_rate AS price,
           film.length,
           film.rating,
-          group_concat((((upper("substring"(actor.first_name, 1, 1)) || lower("substring"(actor.first_name, 2))) || upper("substring"(actor.last_name, 1, 1))) || lower("substring"(actor.last_name, 2)))) AS actors
+          group_concat((((upper("substring"((actor.first_name)::text, 1, 1)) || lower("substring"((actor.first_name)::text, 2))) || upper("substring"((actor.last_name)::text, 1, 1))) || lower("substring"((actor.last_name)::text, 2)))) AS actors
          FROM ((((category
            LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))
            LEFT JOIN film ON ((film_category.film_id = film.film_id)))
@@ -34,7 +34,7 @@ sqlObject:
         film.rental_rate AS price,
         film.length,
         film.rating,
-        group_concat((((upper("substring"(actor.first_name, 1, 1)) || lower("substring"(actor.first_name, 2))) || upper("substring"(actor.last_name, 1, 1))) || lower("substring"(actor.last_name, 2)))) AS actors
+        group_concat((((upper("substring"((actor.first_name)::text, 1, 1)) || lower("substring"((actor.first_name)::text, 2))) || upper("substring"((actor.last_name)::text, 1, 1))) || lower("substring"((actor.last_name)::text, 2)))) AS actors
        FROM ((((category
          LEFT JOIN film_category ON ((category.category_id = film_category.category_id)))
          LEFT JOIN film ON ((film_category.film_id = film.film_id)))

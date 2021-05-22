@@ -8,9 +8,9 @@ sqlObject:
   dependencies: !!set {
     }
   options:
-    ddl: CREATE TRIGGER last_updated BEFORE UPDATE ON public.store FOR EACH ROW EXECUTE
+    ddl: CREATE TRIGGER last_updated BEFORE UPDATE ON public.film FOR EACH ROW EXECUTE
       PROCEDURE last_updated()
     tgname: last_updated
-    trigger_table: store
-  sql: CREATE TRIGGER last_updated BEFORE UPDATE ON public.store FOR EACH ROW EXECUTE
+    trigger_table: film
+  sql: CREATE TRIGGER last_updated BEFORE UPDATE ON public.film FOR EACH ROW EXECUTE
     PROCEDURE last_updated()

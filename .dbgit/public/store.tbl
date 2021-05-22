@@ -7,6 +7,7 @@ table:
   owner: postgres
   dependencies: !!set
     public/address.tbl: null
+    public/staff.tbl: null
   comment: ''
   options:
     hasindexes: t
@@ -59,7 +60,7 @@ fields:
     description: ''
     isPrimaryKey: false
     isNullable: false
-    typeSQL: timestamp with time zone NOT NULL
+    typeSQL: timestamp without time zone NOT NULL
     typeUniversal: DATE
     order: 4
     defaultValue: now()
@@ -97,6 +98,20 @@ constraints:
         ON DELETE RESTRICT
       owner: postgres
     sql: FOREIGN KEY (address_id) REFERENCES address(address_id) ON UPDATE CASCADE
+      ON DELETE RESTRICT
+  store_manager_staff_id_fkey:
+    name: store_manager_staff_id_fkey
+    schema: public
+    owner: postgres
+    dependencies: *id001
+    constraintType: f
+    options:
+      constraint_name: store_manager_staff_id_fkey
+      constraint_type: f
+      ddl: FOREIGN KEY (manager_staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE
+        ON DELETE RESTRICT
+      owner: postgres
+    sql: FOREIGN KEY (manager_staff_id) REFERENCES staff(staff_id) ON UPDATE CASCADE
       ON DELETE RESTRICT
   store_pkey:
     name: store_pkey

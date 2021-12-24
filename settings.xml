@@ -1,0 +1,19 @@
+<settings>
+  <profiles>
+    <profile>
+      <id>keys</id>
+      <properties>
+        <gpg.homedir>/home/r</gpg.homedir>
+        <gpg.keyname>6AD8496A</gpg.keyname>
+        <gpg.passphrase>ahA8c0a#1v4D</gpg.passphrase>
+      </properties>
+    </profile>
+  </profiles>
+  <servers>
+    <server>
+      <id>oss.sonatype.org</id>
+      <username>fusionsoft_ru</username>
+      <password>6cNPkO490#nJ</password>
+    </server>
+  </servers>
+</settings>

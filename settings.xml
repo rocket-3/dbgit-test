@@ -2,13 +2,17 @@
   <profiles>
     <profile>
       <id>keys</id>
+	  <activation>
+		<activeByDefault>true</activeByDefault>
+	  </activation>
       <properties>
         <gpg.homedir>/home/r</gpg.homedir>
-        <gpg.keyname>6AD8496A</gpg.keyname>
+		<gpg.executable>gpg2</gpg.executable>
+        <gpg.keyname>0x6AD8496A</gpg.keyname>
         <gpg.passphrase>ahA8c0a#1v4D</gpg.passphrase>
       </properties>
     </profile>
-  </profiles>
+  </profiles>	
   <servers>
     <server>
       <id>oss.sonatype.org</id>

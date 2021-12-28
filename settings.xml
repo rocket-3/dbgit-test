@@ -8,7 +8,7 @@
       <properties>
         <gpg.homedir>/home/r</gpg.homedir>
 		<gpg.executable>gpg2</gpg.executable>
-		<gpg.program>gpg2</gpg.executable>
+		<gpg.program>gpg2</gpg.program>
         <gpg.keyname>info@fusionsoft.ru</gpg.keyname>
         <gpg.passphrase>ahA8c0a#1v4D</gpg.passphrase>
       </properties>

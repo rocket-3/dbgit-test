@@ -8,7 +8,7 @@
       <properties>
         <gpg.homedir>/home/r</gpg.homedir>
 		<gpg.executable>gpg</gpg.executable>
-        <gpg.keyname>0x6AD8496A</gpg.keyname>
+        <gpg.keyname>6AD8496A</gpg.keyname>
         <gpg.passphrase>ahA8c0a#1v4D</gpg.passphrase>
       </properties>
     </profile>
